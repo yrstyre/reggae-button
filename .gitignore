@@ -1,0 +1,7 @@
+# ignore built files
+/dist/*
+
+# Others
+*.orig
+.vscode/*
+node_modules/
