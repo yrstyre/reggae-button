@@ -1,0 +1,29 @@
+{
+  "name": "reggae-button",
+  "version": "1.0.0",
+  "description": "Coming soon!",
+  "main": "main.js",
+  "scripts": {
+    "dev": "npm run build:js:dev",
+    "build:prod": "npm-run-all -s build:js:prod build:css:prod",
+    "build:js:prod": "browserify ./main.js | uglifyjs > ./dist/main.min.js",
+    "build:js:dev": "browserify ./main.js > ./dist/main.js",
+    "build:css:prod": "uglifycss ./style.css > ./dist/style.min.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yrstyre/reggae-button.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yrstyre/reggae-button/issues"
+  },
+  "homepage": "https://github.com/yrstyre/reggae-button#readme",
+  "dependencies": {
+    "browserify": "^14.4.0",
+    "npm-run-all": "^4.0.2",
+    "uglifycss": "0.0.27",
+    "uglifyjs": "^2.4.11"
+  }
+}
