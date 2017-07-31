@@ -1,0 +1,172 @@
+# To commit without triggering appveyor include [skip ci] or [ci skip] in commit message (include brackets)
+#
+# Master/Development branches has their own configurations
+# All other branches uses Default Configuration
+#
+# Note: With current version of appveyor all settings needs to be repeated for every branch
+# As of mid August 2016 appveyor has begun working on a feature where only branch specific
+# configurations needs to be set, and "shared" settings will no longer need to be repeated.
+
+# Use this to rdp into the build agent:
+# on_finish:
+# - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+#////////////////////////////////////////////////////////////////////#
+#                      Development Configuration                     #
+#////////////////////////////////////////////////////////////////////#
+-
+ version: 1.0.{build}
+ 
+ branches:
+   only:
+     - dev
+ 
+ #---------------------------------#
+ #    environment configuration    #
+ #---------------------------------#
+ 
+ # Variables
+ environment:
+  website_name: thereggaebutton-dev
+  user_name: thereggaebutton-dev
+  website_psw:
+   secure: AAmgwmRqI3Ywku820Qbyf5XO/d7UeHreXYGJEW24cptFuOgJsVqVDu/hr+5k+eevaRtznJ2oyEgaE17xNARuoA==
+
+ # Build worker image (VM template)
+ image: Visual Studio 2017
+ 
+ cache:
+   - c:\users\appveyor\.nuget # Don't check package cache for updating if no changes to packages.config
+   - '%LocalAppData%\NuGet\Cache'
+ 
+ #---------------------------------#
+ #       build configuration       #
+ #---------------------------------#
+ 
+ platform: Any CPU
+ 
+ configuration: release
+
+ matrix:
+  fast_finish: true
+
+ install:
+  - ps: appveyor-retry npm install
+  - ps: mkdir ./wwwroot/dist
+  - ps: npm run dev
+
+ build:
+   parallel: true
+   project: thereggaebutton.sln
+   publish_wap: true
+   verbosity: normal
+ 
+ before_build:
+   - cmd: dotnet restore
+ build_script:
+  # Build and publish HittaHemApi service
+   - cmd: dotnet build .\TheReggaeButton
+   - cmd: dotnet publish .\TheReggaeButton --output %appveyor_build_folder%\AppOutput
+ 
+ #---------------------------------#
+ #     deployment configuration    #
+ #---------------------------------#
+
+ artifacts:
+  - path: AppOutput
+    name: AppOutput
+
+ deploy_script:
+  # Deploy web app
+  - '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -source:IisApp=''%appveyor_build_folder%\AppOutput'' -dest:IisApp=''%website_name%'',ComputerName=''https://%website_name%.scm.azurewebsites.net/msdeploy.axd'',UserName=''$%user_name%'',Password=''%website_psw%'',IncludeAcls=''False'',AuthType=''Basic'' -verb:sync -enablerule:AppOffline -enableRule:DoNotDeleteRule -retryAttempts:2'
+  
+ #---------------------------------#
+ #         notifications           #
+ #---------------------------------#
+
+# notifications:
+#  - provider: Slack
+#    incoming_webhook: https://hooks.slack.com/services/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
+
+# on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+#////////////////////////////////////////////////////////////////////#
+#                        Master Configuration                       #
+#////////////////////////////////////////////////////////////////////#
+-
+ version: 1.0.{build}
+ 
+ branches:
+   only:
+     - master
+ 
+ #---------------------------------#
+ #    environment configuration    #
+ #---------------------------------#
+
+ # Variables
+ environment:
+  website_name: thereggaebutton-master
+  user_name: thereggaebutton-master
+  website_psw:
+   secure: XAMKjZKabWLgz9fZZw9dDpsjeJU6wTpE2RhBGUJibR38sP0kOKOS10E3P/Gp0QM67WfpCez177jeKMkCm9d6dQ==
+
+ # Build worker image (VM template)
+ image: Visual Studio 2017
+ 
+ cache:
+   - c:\users\appveyor\.nuget # Don't check package cache for updating if no changes to packages.config
+   - '%LocalAppData%\NuGet\Cache'
+ 
+ #---------------------------------#
+ #       build configuration       #
+ #---------------------------------#
+ 
+ platform: Any CPU
+ 
+ configuration: release
+
+ matrix:
+  fast_finish: true
+
+ install:
+  - ps: appveyor-retry npm install
+  - ps: mkdir ./wwwroot/dist
+  - ps: npm build prod
+
+ build:
+   parallel: true
+   project: thereggaebutton.sln
+   publish_wap: true
+   verbosity: normal
+ 
+ before_build:
+   - cmd: dotnet restore
+ build_script:
+  # Build and publish HittaHemApi service
+   - cmd: dotnet build .\TheReggaeButton
+   - cmd: dotnet publish .\TheReggaeButton --output %appveyor_build_folder%\AppOutput
+  
+ #---------------------------------#
+ #     deployment configuration    #
+ #---------------------------------#
+
+ artifacts:
+  - path: AppOutput
+    name: AppOutput
+
+ deploy_script:
+  # Deploy web app
+  - '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -source:IisApp=''%appveyor_build_folder%\AppOutput'' -dest:IisApp=''%website_name%'',ComputerName=''https://%website_name%.scm.azurewebsites.net/msdeploy.axd'',UserName=''$%user_name%'',Password=''%website_psw%'',IncludeAcls=''False'',AuthType=''Basic'' -verb:sync -enablerule:AppOffline -enableRule:DoNotDeleteRule -retryAttempts:2'
+  
+ #---------------------------------#
+ #         notifications           #
+ #---------------------------------#
+
+# notifications:
+#  - provider: Slack
+#    incoming_webhook: https://hooks.slack.com/services/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
+
+# on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
