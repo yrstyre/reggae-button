@@ -4,11 +4,14 @@
   "description": "Coming soon!",
   "main": "main.js",
   "scripts": {
-    "dev": "npm run build:js:dev",
+    "dev": "npm run build:dev",
+    "build:dev": "npm-run-all -p build:js:dev build:css:dev",
     "build:prod": "npm-run-all -s build:js:prod build:css:prod",
     "build:js:prod": "browserify ./main.js | uglifyjs > ./dist/main.min.js",
     "build:js:dev": "browserify ./main.js > ./dist/main.js",
-    "build:css:prod": "uglifycss ./style.css > ./dist/style.min.css"
+    "build:css:prod": "lessc ./style.less | postcss -u autoprefixer -u cssnano -o ./dist/style.min.css",
+    "build:css:dev": "lessc ./style.less | postcss -u autoprefixer -o ./dist/style.css",
+    "test": "ava"
   },
   "repository": {
     "type": "git",
@@ -21,9 +24,25 @@
   },
   "homepage": "https://github.com/yrstyre/reggae-button#readme",
   "dependencies": {
+    "autoprefixer": "^7.1.2",
+    "babelify": "^7.3.0",
     "browserify": "^14.4.0",
+    "cssnano": "^3.10.0",
+    "less": "^2.7.2",
     "npm-run-all": "^4.0.2",
-    "uglifycss": "0.0.27",
-    "uglifyjs": "^2.4.11"
+    "postcss-cli": "^4.1.0",
+    "uglify-js": "^3.0.27"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify"
+      ]
+    ]
   }
 }
