@@ -1,9 +1,31 @@
 import data from '../songs.json';
 
+let currentSongIndex = 0;
+let player;
+let songs;
+
 const shuffle = (arr) => arr.sort(() => (Math.random() - 0.5));
 
 const onPlayerReady = (event) => {
     event.target.playVideo();
+};
+
+const setUrlHashId = () => {
+    window.location.hash = `#${songs[currentSongIndex].videoId}`;
+};
+
+const playNext = () => {
+    if (songs.length -1 === currentSongIndex) {
+        currentSongIndex = 0;
+    }
+
+    currentSongIndex++;
+    setUrlHashId();
+    startVideo();
+};
+
+const startVideo = () => {
+    player.loadVideoById(songs[currentSongIndex].videoId);
 };
 
 const onPlayerStateChange = (event) => {
@@ -12,6 +34,7 @@ const onPlayerStateChange = (event) => {
             break;
         case 0: // end
             console.log('play next song!');
+            playNext();
             break;
         case 1: // playing
             break;
@@ -24,12 +47,12 @@ const onPlayerStateChange = (event) => {
     return false;
 };
 
-const startPlayer = () => {
+const startPlayer = (videoId) => {
     if (YT.loaded) {
-        var player = new YT.Player('player', {
+        player = new YT.Player('player', {
             height: '390',
             width: '640',
-            videoId: shuffle(data.songs)[0].videoId,
+            videoId: videoId || songs[0].videoId,
             events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
@@ -43,8 +66,24 @@ const startPlayer = () => {
 const addEvents = () => {
     const playButton = document.getElementById('play-button');
     playButton.addEventListener('click', () => {
+        setUrlHashId();
         startPlayer();
+    });
+
+    window.addEventListener('hashchange', () => {
+        console.log('hash changed');
     });
 };
 
-addEvents();
+const init = () => {
+    songs = shuffle(data.songs);
+
+    if (window.location.hash) {
+        const videoId = window.location.hash.replace('#', '');
+        startPlayer(videoId);
+    }
+
+    addEvents();
+}
+
+init();
