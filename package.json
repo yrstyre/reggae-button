@@ -4,14 +4,17 @@
   "description": "Coming soon!",
   "main": "main.js",
   "scripts": {
-    "dev": "npm run build:dev",
+    "dev": "npm-run-all build:dev watch",
     "build:dev": "npm-run-all -p build:js:dev build:css:dev",
     "build:prod": "npm-run-all -s build:js:prod build:css:prod",
-    "build:js:prod": "browserify ./main.js | uglifyjs > ./dist/main.min.js",
-    "build:js:dev": "browserify ./main.js > ./dist/main.js",
-    "build:css:prod": "lessc ./style.less | postcss -u autoprefixer -u cssnano -o ./dist/style.min.css",
-    "build:css:dev": "lessc ./style.less | postcss -u autoprefixer -o ./dist/style.css",
-    "test": "ava"
+    "build:js:prod": "browserify ./scripts/main.js | uglifyjs > ./dist/main.min.js",
+    "build:js:dev": "browserify ./scripts/main.js > ./dist/main.js",
+    "build:css:prod": "lessc ./style/style.less | postcss -u autoprefixer -u cssnano -o ./dist/style.css",
+    "build:css:dev": "lessc ./style/style.less | postcss -u autoprefixer -o ./dist/style.css",
+    "test": "ava",
+    "watch": "npm-run-all -p watch:css watch:js",
+    "watch:css": "nodemon -e less -w ./style -x npm run build:css:dev -C",
+    "watch:js": "nodemon -e js -w ./scripts -x npm run build:js:dev -C"
   },
   "repository": {
     "type": "git",
@@ -29,6 +32,7 @@
     "browserify": "^14.4.0",
     "cssnano": "^3.10.0",
     "less": "^2.7.2",
+    "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
     "postcss-cli": "^4.1.0",
     "uglify-js": "^3.0.27"
