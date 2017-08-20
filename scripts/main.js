@@ -3,6 +3,7 @@ import data from '../songs.json';
 let currentSongIndex = 0;
 let player;
 let songs;
+let playerIsInitialised = false;
 
 const shuffle = (arr) => arr.sort(() => (Math.random() - 0.5));
 
@@ -20,6 +21,16 @@ const playNext = () => {
     }
 
     currentSongIndex++;
+    setUrlHashId();
+    startVideo();
+};
+
+const playPrevious = () => {
+    if (currentSongIndex === 0) {
+        currentSongIndex = songs.length - 1;
+    }
+
+    currentSongIndex--;
     setUrlHashId();
     startVideo();
 };
@@ -65,9 +76,21 @@ const startPlayer = (videoId) => {
 
 const addEvents = () => {
     const playButton = document.getElementById('play-button');
+    const prevButton = document.getElementById('play-prev');
     playButton.addEventListener('click', () => {
+        if (!playerIsInitialised) {
+            playerIsInitialised = true;
+            prevButton.classList.remove('hidden');
+            startPlayer();
+        } else {
+            playNext();
+        }
+
         setUrlHashId();
-        startPlayer();
+    });
+
+    prevButton.addEventListener('click', () => {
+        playPrevious();
     });
 
     window.addEventListener('hashchange', () => {
