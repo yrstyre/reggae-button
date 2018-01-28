@@ -96,8 +96,20 @@ const addEvents = () => {
         playPrevious();
     });
 
-    window.addEventListener('hashchange', () => {
+    document.addEventListener('hashchange', () => {
         console.log('hash changed');
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/service-worker.js')
+                .then(() => {
+                    console.info('service worker registered');
+                }, errorInfo => {
+                    console.error(`service worker registration failed: ${errorInfo}`);
+                });
+        }
     });
 };
 
