@@ -1,28 +1,24 @@
 import data from '../songs.json';
 
+const shuffle = (arr) => arr.sort(() => (Math.random() - 0.5));
 let currentSongIndex = 0;
 let player;
-let songs;
-let playerIsInitialised = false;
-
-const shuffle = (arr) => arr.sort(() => (Math.random() - 0.5));
-
-const onPlayerReady = (event) => {
-    event.target.playVideo();
-};
+let songs = shuffle(data.songs);
+let videoIsPaused = false;
 
 const setUrlHashId = () => {
     window.location.hash = `#${songs[currentSongIndex].videoId}`;
 };
 
 const playNext = () => {
-    if (songs.length -1 === currentSongIndex) {
+    if (songs.length - 1 === currentSongIndex) {
         currentSongIndex = 0;
     }
 
     currentSongIndex++;
     setUrlHashId();
     startVideo();
+    videoIsPaused = false;
 };
 
 const playPrevious = () => {
@@ -35,67 +31,55 @@ const playPrevious = () => {
     startVideo();
 };
 
+const setTitle = (element) => {
+    element.innerHTML = `<div><p class="artist">${songs[currentSongIndex].artist}</p>` +
+    `<p class="title">${songs[currentSongIndex].title}</p></div>`;
+};
+
 const startVideo = () => {
     player.loadVideoById(songs[currentSongIndex].videoId);
 };
 
-const onPlayerStateChange = (event) => {
-    switch (event.data) {
-        case -1: // ready
-            break;
-        case 0: // end
-            console.log('play next song!');
-            playNext();
-            break;
-        case 1: // playing
-            break;
-        case 2: // paused
-            break;
-        case 3: // buffering
-            break;
-    }
-
-    return false;
-};
-
-const startPlayer = (videoId) => {
-    if (YT.loaded) {
-        player = new YT.Player('player', {
-            height: '390',
-            width: '640',
-            videoId: videoId || songs[0].videoId,
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            },
-            playerVars: {
-                rel: 0
-            }
-        });
+const togglePauseVideo = () => {
+    if (videoIsPaused) {
+        videoIsPaused = false;
+        player.playVideo();
     } else {
-        console.log('api not loaded yet!');
+        videoIsPaused = true;
+        player.pauseVideo();
+        
     }
 };
 
 const addEvents = () => {
     const playButton = document.getElementById('play-button');
-    const prevButton = document.getElementById('play-prev');
+    const pauseButton = document.getElementById('pause-button');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    const titleElement = document.getElementById('title-wrapper');
+
     playButton.addEventListener('click', () => {
-        if (!playerIsInitialised) {
-            playerIsInitialised = true;
-            prevButton.classList.remove('hidden');
-            startPlayer();
-        } else {
-            playNext();
-        }
+        document.body.classList.add('playing');
+        player.playVideo();
 
         setUrlHashId();
+        setTitle(titleElement);
     });
 
     prevButton.addEventListener('click', () => {
         playPrevious();
+        setTitle(titleElement);
     });
 
+    nextButton.addEventListener('click', () => {
+        playNext();
+        setTitle(titleElement);
+    });
+
+    pauseButton.addEventListener('click', () => {
+        togglePauseVideo();
+    });
+    
     document.addEventListener('hashchange', () => {
         console.log('hash changed');
     });
@@ -113,15 +97,54 @@ const addEvents = () => {
     });
 };
 
-const init = () => {
-    songs = shuffle(data.songs);
+const onPlayerReady = (event) => {
+    addEvents();
+};
 
-    if (window.location.hash) {
-        const videoId = window.location.hash.replace('#', '');
-        startPlayer(videoId);
+const onPlayerStateChange = (event) => {
+    switch (event.data) {
+        case -1: // ready
+            break;
+        case 0: // end
+            playNext();
+            break;
+        case 1: // playing
+            break;
+        case 2: // paused
+            break;
+        case 3: // buffering
+            break;
     }
 
-    addEvents();
-}
+    return false;
+};
 
-init();
+// Youtube API functions
+window.onYouTubeIframeAPIReady = () => {
+    if (window.location.hash) {
+        // Takes song id from hash in url and sets currentSongIndex of song in list.
+        const urlId = window.location.hash.replace('#', '');
+        const songObject = songs.filter(song => song.videoId === urlId)[0];
+        currentSongIndex = songs.indexOf(songObject);
+    }
+
+    player = new YT.Player('player', {
+        height: '390',
+        width: '640',
+        videoId:  songs[currentSongIndex].videoId,
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        },
+        playerVars: {
+            rel: 0, // does not show related videos
+            showinfo: 0, // removes information like the video title and uploader
+            controls: 0, //  player controls are not displayed
+            autohide: 1,
+            fs: 0, // removes fullscreen button
+            iv_load_policy: 3, // removes video annotations
+            modestbranding: 1 // does not show a YouTube logo
+            // autoplay: 1 // will automatically start to play when the player loads
+        }
+    });
+};
