@@ -6,10 +6,10 @@ body {
     &.playing {
         .play-button {
             opacity: 0;
-            visibility: none;
+            visibility: hidden;
         }
 
-        .prev-button, .next-button, .pause-button {
+        .prev-button, .next-button, .pause-button, .filter-button {
             display: block;
         }
 
@@ -36,6 +36,11 @@ button {
     left: 0;
     display: flex;
     background: linear-gradient(to bottom,rgba(0,0,0,.4) 0%,rgba(0,0,0,.2) 40%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.4) 100%);
+}
+
+.player-top-content {
+    align-items: center;
+    justify-content: center;
 }
 
 .player-background {
@@ -112,7 +117,7 @@ button {
     }
 }
 
-.prev-button, .next-button, .pause-button {
+.prev-button, .next-button, .pause-button, .filter-button {
     position: absolute;
     display: none;
 }
@@ -129,6 +134,26 @@ button {
     position: absolute;
     bottom: 3rem;
     right: 0;
+}
+
+.filter-button {
+    position: absolute;
+    background: rebeccapurple;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.filter {
+    display: none;
+    max-width: 500px;
+    width: 100%;
+    justify-content: space-between;
+    color: white;
+
+    &.show {
+        display: flex;
+    }
 }
   
 @keyframes zigzag {
@@ -158,5 +183,18 @@ button {
 
     use {
         fill: white;
+    }
+}
+
+@extra-small: ~"only screen and (max-width: 768px)";
+@small: ~"only screen and (min-width: 769px) and (max-width: 991px)";
+
+@media @extra-small {
+    .skip-arrow {
+        width: 30px;
+    }
+
+    .svg-pause {
+        width: 25px;
     }
 }

@@ -56,6 +56,8 @@ const addEvents = () => {
     const pauseButton = document.getElementById('pause-button');
     const prevButton = document.getElementById('prev-button');
     const nextButton = document.getElementById('next-button');
+    const filterButton = document.getElementById('filter-button');
+    const filterElement = document.getElementById('filter');
     const titleElement = document.getElementById('title-wrapper');
 
     playButton.addEventListener('click', () => {
@@ -64,6 +66,10 @@ const addEvents = () => {
 
         setUrlHashId();
         setTitle(titleElement);
+    });
+
+    pauseButton.addEventListener('click', () => {
+        togglePauseVideo();
     });
 
     prevButton.addEventListener('click', () => {
@@ -76,8 +82,8 @@ const addEvents = () => {
         setTitle(titleElement);
     });
 
-    pauseButton.addEventListener('click', () => {
-        togglePauseVideo();
+    filterButton.addEventListener('click', () => {
+        filterElement.classList.toggle('show');
     });
     
     document.addEventListener('hashchange', () => {
