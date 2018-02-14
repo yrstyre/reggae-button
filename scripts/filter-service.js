@@ -1,10 +1,10 @@
-const applyFilter = (filters, playlist) => {
+const applyFilterWithRating = (filter, playlist) => {
     const songsWithScores = playlist.map(song => {
         return {
             videoId: song.id,
             artist: song.artist,
             title: song.title,
-            score: getMatchCount(filters, song)
+            score: getTotalRating(filters, song)
         };
     })
         .shuffle()
@@ -19,14 +19,15 @@ const applyFilter = (filters, playlist) => {
     return songsWithScores;
 }
 
-const getMatchCount = (filters, song) => {
+const getTotalRating = (filters, song) => {
     let count = 0;
     filters.forEach(filter => {
-        if(song.tags.indexOf(filter) > -1) {
-            count++;
+        if(song.tags.indexOf(filter.name) > -1) {
+            count += filter.value;
         }
     });
     return count;
 }
 
 const shuffle = (arr) => arr.sort(() => (Math.random() - 0.5));
+
