@@ -1,129 +1,177 @@
 {
-    "songs": [
-        {
-            "videoId": "bsoiupLME-w",
-            "artist": "Alpha Blondy",
-            "title": "I Wish You Were Here"
-        },
-        {
-            "videoId": "S3UqvWk8-uw",
-            "artist": "Bob Marley",
-            "title": "Stir It Up"
-        },
-        {
-            "videoId": "r6GMBCaagok",
-            "artist": "Etana",
-            "title": "Reggae"
-        },
-        {
-            "videoId": "e-L-2H9SJNE",
-            "artist": "Lady G",
-            "title": "Man Dem A Tight"
-        },
-        {
-            "videoId": "TOT322nAt2A",
-            "artist": "Rita Marley",
-            "title": "One Draw"
-        },
-        {
-            "videoId": "8vCumnMX1HU",
-            "artist": "Black Uhuru",
-            "title": "Sinsemilla"
-        },
-        {
-            "videoId": "Ry8_NdNKq-w",
-            "artist": "Collie Buddz",
-            "title": "Come Around"
-        },
-        {
-            "videoId": "ABc8ciT5QLs",
-            "artist": "Peter Tosh",
-            "title": "Legalize It"
-        },
-        {
-            "videoId": "WpIAc9by5iU",
-            "artist": "Max Romeo",
-            "title": "Chase The Devil"
-        },
-        {
-            "videoId": "_GZlJGERbvE",
-            "artist": "Damian Marley",
-            "title": "Welcome To Jamrock"
-        },
-        {
-            "videoId": "oBVAGXPstHk",
-            "artist": "Ini Kamoze",
-            "title": "World A Music"
-        },
-        {
-            "videoId": "-av7F1JBmj4",
-            "artist": "Chaka Demus & Pliers",
-            "title": "Murder She Wrote"
-        },
-        {
-            "videoId": "wQ8mNxoD3FQ",
-            "artist": "Inner Circle",
-            "title": "Games People Play"
-        },
-        {
-            "videoId": "fUNTk5xsxk4",
-            "artist": "10cc",
-            "title": "Dreadlock Holiday"
-        },
-        {
-            "videoId": "32ZI1yWUdNc",
-            "artist": "Sizzla",
-            "title": "Thank You Mama"
-        },
-        {
-            "videoId": "vOVioZGnE7E",
-            "artist": "Musical Youth",
-            "title": "Pass The Dutchie"
-        },
-        {
-            "videoId": "mMMsk7MliAk",
-            "artist": "Martin Jondo",
-            "title": "Rainbow Warrior"
-        },
-        {
-            "videoId": "LMry29J_f0o",
-            "artist": "Irie Révoltés",
-            "title": "Soleil"
-        },
-        {
-            "videoId": "Bp6gaPYwPB0",
-            "artist": "Dodo",
-            "title": "Hippie Bus"
-        },
-        {
-            "videoId": "83Y2hv-3UCM",
-            "artist": "Desmond Dekker",
-            "title": "Israelites"
-        },
-        {
-            "videoId": "b21zIF3lAZo",
-            "artist": "Eek-a-Mouse",
-            "title": "Ganja Smuggling"
-        },
-        {
-            "videoId": "Xnmz8JC-2p8",
-            "artist": "Sevana",
-            "title": "Love The Way"
-        },
-        {
-            "videoId": "Oe-BV7OYepI",
-            "artist": "Steel Pulse",
-            "title": "Roller Skates"
-        },
-        {
-            "videoId": "3p55wXWyc4o",
-            "artist": "Tanya Stephens",
-            "title": "It's a Pity"
-        },
-        {
-            "videoId": "I7TDPMGTLUc",
-            "artist": "Tanya Stephens",
-            "title": "These Streets"
-        }
-    ]
+  "songs": [
+    {
+      "videoId": "bsoiupLME-w",
+      "artist": "Alpha Blondy",
+      "title": "I Wish You Were Here"
+    },
+    {
+      "videoId": "S3UqvWk8-uw",
+      "artist": "Bob Marley",
+      "title": "Stir It Up",
+      "tags": ["hits", "jamaican", "classic", "chill"]
+    },
+    {
+      "videoId": "r6GMBCaagok",
+      "artist": "Etana",
+      "title": "Reggae"
+    },
+    {
+      "videoId": "e-L-2H9SJNE",
+      "artist": "Lady G",
+      "title": "Man Dem A Tight"
+    },
+    {
+      "videoId": "TOT322nAt2A",
+      "artist": "Rita Marley",
+      "title": "One Draw",
+      "tags": ["jamaican", "smoke", "happy"]
+    },
+    {
+      "videoId": "8vCumnMX1HU",
+      "artist": "Black Uhuru",
+      "title": "Sinsemilla",
+      "tags": ["jamaican", "smoke"]
+    },
+    {
+      "videoId": "Ry8_NdNKq-w",
+      "artist": "Collie Buddz",
+      "title": "Come Around",
+      "tags": []
+    },
+    {
+      "videoId": "ABc8ciT5QLs",
+      "artist": "Peter Tosh",
+      "title": "Legalize It",
+      "tags": ["smoke", "jamaican", "classic"]
+    },
+    {
+      "videoId": "WpIAc9by5iU",
+      "artist": "Max Romeo",
+      "title": "Chase The Devil",
+      "tags": ["jamaican", "classic"]            
+    },
+    {
+      "videoId": "_GZlJGERbvE",
+      "artist": "Damian Marley",
+      "title": "Welcome To Jamrock",
+      "tags": ["jamaican"]            
+    },
+    {
+      "videoId": "oBVAGXPstHk",
+      "artist": "Ini Kamoze",
+      "title": "World A Music",
+      "tags": ["classic", "jamaican"]
+    },
+    {
+      "videoId": "-av7F1JBmj4",
+      "artist": "Chaka Demus & Pliers",
+      "title": "Murder She Wrote",
+      "tags": ["jamaican"]       
+    },
+    {
+      "videoId": "wQ8mNxoD3FQ",
+      "artist": "Inner Circle",
+      "title": "Games People Play",
+      "tags": ["hits", "jamaican", "happy"]   
+    },
+    {
+      "videoId": "fUNTk5xsxk4",
+      "artist": "10cc",
+      "title": "Dreadlock Holiday",
+      "tags": ["classic"]
+    },
+    {
+      "videoId": "32ZI1yWUdNc",
+      "artist": "Sizzla",
+      "title": "Thank You Mama",
+      "tags": ["jamaican", "chill"]
+    },
+    {
+      "videoId": "vOVioZGnE7E",
+      "artist": "Musical Youth",
+      "title": "Pass The Dutchie",
+      "tags": ["hits", "classic", "smoke", "happy"]
+    },
+    {
+      "videoId": "mMMsk7MliAk",
+      "artist": "Martin Jondo",
+      "title": "Rainbow Warrior",
+      "tags": ["world", "chill"]
+    },
+    {
+      "videoId": "LMry29J_f0o",
+      "artist": "Irie Révoltés",
+      "title": "Soleil",
+      "tags": ["world", "happy"]
+    },
+    {
+      "videoId": "Bp6gaPYwPB0",
+      "artist": "Dodo",
+      "title": "Hippie Bus",
+      "tags": ["world", "happy"]            
+    },
+    {
+      "videoId": "83Y2hv-3UCM",
+      "artist": "Desmond Dekker",
+      "title": "Israelites",
+      "tags": ["hits", "jamaican", "classic"]
+    },
+    {
+      "videoId": "b21zIF3lAZo",
+      "artist": "Eek-a-Mouse",
+      "title": "Ganja Smuggling",
+      "tags": ["jamaican", "smoke", "classic"]            
+    },
+    {
+      "videoId": "dhlwpO6JEZU",
+      "artist": "Big Mountain",
+      "title": "Baby, I Love Your Way",
+      "tags": ["hits"]
+    },
+    {
+      "videoId": "uMUQMSXLlHM",
+      "artist": "Bob Marley",
+      "title": "Buffalo Soldier",
+      "tags": ["hits", "jamaican", "classic", "chill"]
+    },
+    {
+      "videoId": "zXt56MB-3vc",
+      "artist": "UB40",
+      "title": "Red Red Wine",
+      "tags": ["hits", "classic"]
+    },
+    {
+      "videoId": "uc2UEfWjvo8",
+      "artist": "Inner Circle",
+      "title": "Sweat (A La La La La Long)",
+      "tags": ["hits", "jamaican", "happy"]
+    },
+    {
+      "videoId": "Zd68AthoNIw",
+      "artist": "Inner Circle",
+      "title": "Bad Boys",
+      "tags": ["hits", "jamaican"]
+    },
+    {
+      "videoId": "Xnmz8JC-2p8",
+      "artist": "Sevana",
+      "title": "Love The Way"
+    },
+    {
+      "videoId": "Oe-BV7OYepI",
+      "artist": "Steel Pulse",
+      "title": "Roller Skates"
+    },
+    {
+      "videoId": "3p55wXWyc4o",
+      "artist": "Tanya Stephens",
+      "title": "It's a Pity"
+    },
+    {
+      "videoId": "I7TDPMGTLUc",
+      "artist": "Tanya Stephens",
+      "title": "These Streets"
+    }
+  ]
 }
