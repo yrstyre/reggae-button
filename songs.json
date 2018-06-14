@@ -1,9 +1,24 @@
 {
     "songs": [
         {
+            "videoId": "bsoiupLME-w",
+            "artist": "Alpha Blondy",
+            "title": "I Wish You Were Here"
+        },
+        {
             "videoId": "S3UqvWk8-uw",
             "artist": "Bob Marley",
             "title": "Stir It Up"
+        },
+        {
+            "videoId": "r6GMBCaagok",
+            "artist": "Etana",
+            "title": "Reggae"
+        },
+        {
+            "videoId": "e-L-2H9SJNE",
+            "artist": "Lady G",
+            "title": "Man Dem A Tight"
         },
         {
             "videoId": "TOT322nAt2A",
@@ -26,7 +41,7 @@
             "title": "Legalize It"
         },
         {
-            "videoId": "XcMNfX5yh28",
+            "videoId": "WpIAc9by5iU",
             "artist": "Max Romeo",
             "title": "Chase The Devil"
         },
@@ -46,7 +61,7 @@
             "title": "Murder She Wrote"
         },
         {
-            "videoId": "NQtPIysh9C0",
+            "videoId": "wQ8mNxoD3FQ",
             "artist": "Inner Circle",
             "title": "Games People Play"
         },
@@ -89,6 +104,26 @@
             "videoId": "b21zIF3lAZo",
             "artist": "Eek-a-Mouse",
             "title": "Ganja Smuggling"
+        },
+        {
+            "videoId": "Xnmz8JC-2p8",
+            "artist": "Sevana",
+            "title": "Love The Way"
+        },
+        {
+            "videoId": "Oe-BV7OYepI",
+            "artist": "Steel Pulse",
+            "title": "Roller Skates"
+        },
+        {
+            "videoId": "3p55wXWyc4o",
+            "artist": "Tanya Stephens",
+            "title": "It's a Pity"
+        },
+        {
+            "videoId": "I7TDPMGTLUc",
+            "artist": "Tanya Stephens",
+            "title": "These Streets"
         }
     ]
 }
