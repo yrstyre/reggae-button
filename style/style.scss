@@ -2,30 +2,28 @@
     box-sizing: border-box
 }
 
-body {
-    &.playing {
-        .play-button {
-            opacity: 0;
-            visibility: hidden;
-        }
+.playing {
+  .play-button {
+    opacity: 0;
+    visibility: hidden;
+  }
 
-        .prev-button, .next-button, .pause-button, .filter-button {
-            display: block;
-        }
+  .prev-button, .next-button, .pause-button, .filter-button {
+    display: block;
+  }
 
-        .player-foreground {
-            opacity: 1;
-        }
-    }
+  .player-foreground {
+    opacity: 1;
+  }
 }
 
 button {
-    background: none;
-    border: none;
+  background: none;
+  border: none;
 
-    &:focus {
-        outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 }
 
 .player-background, .player-top-content {
@@ -100,20 +98,20 @@ button {
 }
 
 .play-button {
-    @text-color: #9c89f7;
-    @bg-color: #2e294a;
-    @pattern-color: #f789e4;
-    color: @text-color;
-    background: @bg-color;
+    $text-color: #9c89f7;
+    $bg-color: #2e294a;
+    $pattern-color: #f789e4;
+    color: $text-color;
+    background: $bg-color;
     
     &:hover {
       animation: zigzag 1s linear infinite;
-      background: linear-gradient(135deg, darken(@pattern-color, 40%) 0.25em, transparent 0.25em) -0.5em 0
-                , linear-gradient(225deg, darken(@pattern-color, 40%) 0.25em, transparent 0.25em) -0.5em 0
-                , linear-gradient(315deg, darken(@pattern-color, 40%) 0.25em, transparent 0.25em) 0 0
-                , linear-gradient(45deg, darken(@pattern-color, 40%) 0.25em, @bg-color 0.25em) 0 0;
+      background: linear-gradient(135deg, darken($pattern-color, 40%) 0.25em, transparent 0.25em) -0.5em 0
+                , linear-gradient(225deg, darken($pattern-color, 40%) 0.25em, transparent 0.25em) -0.5em 0
+                , linear-gradient(315deg, darken($pattern-color, 40%) 0.25em, transparent 0.25em) 0 0
+                , linear-gradient(45deg, darken($pattern-color, 40%) 0.25em, $bg-color 0.25em) 0 0;
       background-size: 0.75em 0.75em;
-      color: spin(@text-color,180);
+      color: spin($text-color,180);
     }
 }
 
@@ -186,15 +184,15 @@ button {
     }
 }
 
-@extra-small: ~"only screen and (max-width: 768px)";
-@small: ~"only screen and (min-width: 769px) and (max-width: 991px)";
+$extra-small: "only screen and (max-width: 768px)";
+$small: "only screen and (min-width: 769px) and (max-width: 991px)";
 
-@media @extra-small {
-    .skip-arrow {
-        width: 30px;
-    }
+@media #{$extra-small} {
+  .skip-arrow {
+    width: 30px;
+  }
 
-    .svg-pause {
-        width: 25px;
-    }
+  .svg-pause {
+    width: 25px;
+  }
 }
