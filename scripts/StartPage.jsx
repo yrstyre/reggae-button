@@ -17,7 +17,7 @@ class StartPage extends React.Component {
   render () {
     return (
       <div>
-        <Link to={`/${this.props.songs[0].videoId}`} className="play-button">Stir it up!</Link>
+        <Link to={`/${this.props.songs[0].videoId}`} className="btn">Stir it up!</Link>
       </div>
     );
   }

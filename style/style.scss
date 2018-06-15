@@ -1,187 +1,116 @@
-* {
-    box-sizing: border-box
-}
+@import './colors.scss';
+@import './button.scss';
 
-.playing {
-  .play-button {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  .prev-button, .next-button, .pause-button, .filter-button {
-    display: block;
-  }
-
-  .player-foreground {
-    opacity: 1;
-  }
-}
-
-button {
-  background: none;
-  border: none;
-
-  &:focus {
-    outline: none;
-  }
-}
-
-.player-background, .player-top-content {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    background: linear-gradient(to bottom,rgba(0,0,0,.4) 0%,rgba(0,0,0,.2) 40%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.4) 100%);
-}
-
-.player-top-content {
-    align-items: center;
-    justify-content: center;
-}
-
-.player-background {
-    background: #232323;
-    z-index: -1;
-}
-
-.player-foreground {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.player-foreground,
-.player-background iframe {
-    pointer-events: none;
-}
-
-.player-foreground,
-.player-background iframe {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.title-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: white;
+html {
+    box-sizing: border-box;
 }
 
 .controls {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background: linear-gradient(to bottom,rgba(0,0,0,.4) 0%,rgba(0,0,0,.2) 40%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.4) 100%);
+  
+  &__inner {
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    color: #fff;
+    color: $white;
     font-family: Avenir, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 2rem;
-}
+  }
 
-.play-button {
-    background: none;
-    border: 2px solid;
-    border-bottom-width: 4px;
-    font: inherit;
-    letter-spacing: inherit;
-    padding: 1rem 2rem;
-    text-transform: inherit;
-    transition: color 1s, opacity 0.3s;
-    cursor: pointer;
-    opacity: 1;
-}
-
-.play-button {
-    $text-color: #9c89f7;
-    $bg-color: #2e294a;
-    $pattern-color: #f789e4;
-    color: $text-color;
-    background: $bg-color;
-    
-    &:hover {
-      animation: zigzag 1s linear infinite;
-      background: linear-gradient(135deg, darken($pattern-color, 40%) 0.25em, transparent 0.25em) -0.5em 0
-                , linear-gradient(225deg, darken($pattern-color, 40%) 0.25em, transparent 0.25em) -0.5em 0
-                , linear-gradient(315deg, darken($pattern-color, 40%) 0.25em, transparent 0.25em) 0 0
-                , linear-gradient(45deg, darken($pattern-color, 40%) 0.25em, $bg-color 0.25em) 0 0;
-      background-size: 0.75em 0.75em;
-      color: spin($text-color,180);
-    }
-}
-
-.prev-button, .next-button, .pause-button, .filter-button {
+  &__filter-button, &__prev-button, &__next-button, &__pause-button {
     position: absolute;
-    display: none;
-}
+  }
 
-.prev-button {
-    left: 0;
-}
-
-.next-button {
+  &__filter-button {
+    top: 0;
     right: 0;
-}
+  }
 
-.pause-button {
+  &__prev-button {
+    left: 0;
+  }
+
+  &__next-button {
+    right: 0;
+  }
+
+  &__pause-button {
     position: absolute;
     bottom: 3rem;
     right: 0;
+  }
+
+  &__title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: $white;
+  }
 }
 
-.filter-button {
-    position: absolute;
-    background: rebeccapurple;
-    top: 0;
-    right: 0;
-    cursor: pointer;
+.player {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  background: $mine-shaft;
+  z-index: -1;
+
+  &__inner {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .filter {
-    display: none;
-    max-width: 500px;
-    width: 100%;
-    justify-content: space-between;
-    color: white;
+  display: none;
+  max-width: 500px;
+  width: 100%;
+  justify-content: space-between;
+  color: white;
 
-    &.show {
-        display: flex;
-    }
+  &--show {
+    display: flex;
+  }
 }
-  
-@keyframes zigzag {
-    100% {
-        background-position: 1em 0, 1em 0, -0.75em 0 , -0.75em 0;
-    }
+
+// ICONS
+.skip-arrow {
+  cursor: pointer;
+  width: 50px;
+
+  use {
+    fill: white;
   }
 
-  // ICONS
-.skip-arrow {
-    cursor: pointer;
-    width: 50px;
-
-    use {
-        fill: white;
-    }
-
-    &.right {
-        transform: rotate(180deg);
-    }
+  &.right {
+    transform: rotate(180deg);
+  }
 }
 
 .svg-pause {
-    cursor: pointer;
-    height: 40px;
-    width: 40px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
 
-    use {
-        fill: white;
-    }
+  use {
+    fill: white;
+  }
 }
 
 $extra-small: "only screen and (max-width: 768px)";

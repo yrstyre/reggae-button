@@ -130,7 +130,7 @@ class Player extends React.Component {
 
   render () {
     return (
-      <div className="playing">
+      <div>
         {/* TODO: move svg to separate file */}
         {/* <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
           <symbol id="skip-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -150,31 +150,31 @@ class Player extends React.Component {
           </symbol>
         </svg> */}
 
-        <div className="player-background">
-          <div className="player-foreground">
+        <div className="player">
+          <div className="player__inner">
             <div id="player"></div>
           </div>
         </div>
-        <div className="player-top-content">
-          <div className="controls">
-            <button className="prev-button" onClick={this.handlePreviousButton}>
+        <div className="controls">
+          <div className="controls__inner">
+            <button className="controls__prev-button" onClick={this.handlePreviousButton}>
               <svg className="skip-arrow left"><use xlinkHref="#skip-arrow" /></svg>
             </button>
-            <button className="next-button" onClick={this.handleNextButton}>
+            <button className="controls__next-button" onClick={this.handleNextButton}>
               <svg className="skip-arrow right"><use xlinkHref="#skip-arrow" /></svg>
             </button>
-            <button className="pause-button" onClick={this.handlePauseButton}>
+            <button className="controls__pause-button" onClick={this.handlePauseButton}>
               <svg className="svg-pause"><use xlinkHref="#svg-pause" /></svg>
             </button>
-            <button className="filter-button" onClick={this.handleFilterButton}>
+            <button className="btn btn--purple controls__filter-button" onClick={this.handleFilterButton}>
               Filter button
             </button>
-            <div className="title-wrapper">
-              <p className="artist">{this.props.currentSong.artist}</p>
-              <p className="title">{this.props.currentSong.title}</p>
+            <div className="controls__title">
+              <p className="controls__title--artist">{this.props.currentSong.artist}</p>
+              <p className="controls__title--song-title">{this.props.currentSong.title}</p>
             </div>
           </div>
-          <div className={`filter ${this.state.filterOpen ? 'show' : ''}`}>
+          <div className={`filter ${this.state.filterOpen ? 'filter--show' : ''}`}>
             <p>True Jamaican</p>
             <p>Mellow</p>
             <p>Political</p>
