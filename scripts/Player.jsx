@@ -152,8 +152,8 @@ class Player extends React.Component {
               Filter button
             </button>
             <div className="controls__title">
-              <p className="controls__title--artist">{this.props.currentSong.artist}</p>
-              <p className="controls__title--song-title">{this.props.currentSong.title}</p>
+              <h3 className="controls__title--artist">{this.props.currentSong.artist}</h3>
+              <h4 className="controls__title--song-title">{this.props.currentSong.title}</h4>
             </div>
           </div>
           <div className={`filter ${this.state.filterOpen ? 'filter--show' : ''}`}>

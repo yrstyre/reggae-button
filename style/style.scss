@@ -1,9 +1,13 @@
+@import './variables.scss';
+@import './font-fira-sans.scss';
+@import './typography.scss';
 @import './colors.scss';
 @import './buttons.scss';
 @import './icons.scss';
 
 html {
     box-sizing: border-box;
+    font-family: FiraSans, sans-serif;
 }
 
 .controls {
@@ -24,15 +28,19 @@ html {
     top: 0;
     bottom: 0;
     color: $white;
-    font-family: Avenir, Helvetica, sans-serif;
+    // font-family: Avenir, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2rem;
+    margin: 3rem;
   }
 
   &__filter-button, &__prev-button, &__next-button, &__pause-button {
     position: absolute;
+  }
+
+  &__prev-button, &__next-button, &__pause-button {
+    opacity: 0.7;
   }
 
   &__filter-button {
@@ -56,9 +64,23 @@ html {
 
   &__title {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     color: $white;
+
+    &--artist, &--song-title {
+      margin: 0;
+    }
+
+    &--artist {
+      font-size: $heading-charlie;
+    }
+
+    &--song-title {
+      font-size: $heading-delta;
+      font-weight: 400;
+      margin-top: 0.2rem;
+    }
   }
 }
 

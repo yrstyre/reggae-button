@@ -12,6 +12,10 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: 'svg-sprite-loader'
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2)$/,
+        loader: 'file-loader?name=[name].[ext]'
       }
     ]
   }
