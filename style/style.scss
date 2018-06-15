@@ -1,5 +1,6 @@
 @import './colors.scss';
-@import './button.scss';
+@import './buttons.scss';
+@import './icons.scss';
 
 html {
     box-sizing: border-box;
@@ -86,30 +87,6 @@ html {
 
   &--show {
     display: flex;
-  }
-}
-
-// ICONS
-.skip-arrow {
-  cursor: pointer;
-  width: 50px;
-
-  use {
-    fill: white;
-  }
-
-  &.right {
-    transform: rotate(180deg);
-  }
-}
-
-.svg-pause {
-  cursor: pointer;
-  height: 40px;
-  width: 40px;
-
-  use {
-    fill: white;
   }
 }
 

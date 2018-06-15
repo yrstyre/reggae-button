@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setCurrentSong } from './actions';
+import SVGIcon from './SVGIcon.jsx';
 
 class Player extends React.Component {
   constructor (props) {
@@ -131,25 +132,6 @@ class Player extends React.Component {
   render () {
     return (
       <div>
-        {/* TODO: move svg to separate file */}
-        {/* <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-          <symbol id="skip-arrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-              viewBox="0 0 42 42" xml:space="preserve">
-                  <path d="M35.965,0.114c-0.329-0.171-0.726-0.148-1.033,0.063L7.5,19.095V1c0-0.553-0.448-1-1-1s-1,0.447-1,1v40c0,0.553,0.448,1,1,1
-                  s1-0.447,1-1V22.905l27.432,18.919C35.103,41.94,35.301,42,35.5,42c0.159,0,0.319-0.038,0.465-0.114
-                  C36.294,41.713,36.5,41.372,36.5,41V1C36.5,0.628,36.294,0.287,35.965,0.114z"/>
-          </symbol>
-          <symbol id="svg-pause" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-              viewBox="0 0 535.578 535.578" xml:space="preserve">
-              <g>
-                  <path d="M231.6,516.278c0,10.658-8.641,19.3-19.3,19.3H106.15c-10.659,0-19.3-8.641-19.3-19.3V19.3
-                      c0-10.659,8.641-19.3,19.3-19.3h106.15c10.659,0,19.3,8.641,19.3,19.3V516.278z"/>
-                  <path d="M448.728,516.278c0,10.658-8.641,19.3-19.3,19.3h-106.15c-10.659,0-19.3-8.641-19.3-19.3V19.3
-                      c0-10.659,8.641-19.3,19.3-19.3h106.15c10.659,0,19.3,8.641,19.3,19.3V516.278z"/>
-              </g>
-          </symbol>
-        </svg> */}
-
         <div className="player">
           <div className="player__inner">
             <div id="player"></div>
@@ -158,13 +140,13 @@ class Player extends React.Component {
         <div className="controls">
           <div className="controls__inner">
             <button className="controls__prev-button" onClick={this.handlePreviousButton}>
-              <svg className="skip-arrow left"><use xlinkHref="#skip-arrow" /></svg>
+              <SVGIcon name="svg-arrow" className="icon--svg-arrow" />
             </button>
             <button className="controls__next-button" onClick={this.handleNextButton}>
-              <svg className="skip-arrow right"><use xlinkHref="#skip-arrow" /></svg>
+              <SVGIcon name="svg-arrow" className="icon--svg-arrow icon--svg-arrow-right" />
             </button>
             <button className="controls__pause-button" onClick={this.handlePauseButton}>
-              <svg className="svg-pause"><use xlinkHref="#svg-pause" /></svg>
+              <SVGIcon name="svg-pause" className="icon--svg-pause" />
             </button>
             <button className="btn btn--purple controls__filter-button" onClick={this.handleFilterButton}>
               Filter button
