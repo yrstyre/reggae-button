@@ -11,15 +11,21 @@
       "title": "Book of Job"
     },
     {
+      "videoId": "VuAXl1LYY6o",
+      "artist": "Bob Marley",
+      "title": "Forever Loving Jah"
+    },
+    {
       "videoId": "S3UqvWk8-uw",
       "artist": "Bob Marley",
       "title": "Stir It Up",
-      "tags": ["hits", "jamaican", "classic", "chill"]
+      "tags": ["hits", "jamaican", "retro", "chill"]
     },
     {
       "videoId": "r6GMBCaagok",
       "artist": "Etana",
-      "title": "Reggae"
+      "title": "Reggae",
+      "tags": ["jamaican", "chill"]
     },
     {
       "videoId": "e-L-2H9SJNE",
@@ -48,13 +54,13 @@
       "videoId": "ABc8ciT5QLs",
       "artist": "Peter Tosh",
       "title": "Legalize It",
-      "tags": ["smoke", "jamaican", "classic"]
+      "tags": ["smoke", "jamaican", "retro"]
     },
     {
       "videoId": "WpIAc9by5iU",
       "artist": "Max Romeo",
       "title": "Chase The Devil",
-      "tags": ["jamaican", "classic"]            
+      "tags": ["jamaican", "retro"]            
     },
     {
       "videoId": "_GZlJGERbvE",
@@ -66,7 +72,7 @@
       "videoId": "oBVAGXPstHk",
       "artist": "Ini Kamoze",
       "title": "World A Music",
-      "tags": ["classic", "jamaican"]
+      "tags": ["retro", "jamaican"]
     },
     {
       "videoId": "-av7F1JBmj4",
@@ -84,7 +90,7 @@
       "videoId": "fUNTk5xsxk4",
       "artist": "10cc",
       "title": "Dreadlock Holiday",
-      "tags": ["classic"]
+      "tags": ["retro"]
     },
     {
       "videoId": "32ZI1yWUdNc",
@@ -96,7 +102,7 @@
       "videoId": "vOVioZGnE7E",
       "artist": "Musical Youth",
       "title": "Pass The Dutchie",
-      "tags": ["hits", "classic", "smoke", "happy"]
+      "tags": ["hits", "retro", "smoke", "happy"]
     },
     {
       "videoId": "mMMsk7MliAk",
@@ -120,13 +126,13 @@
       "videoId": "83Y2hv-3UCM",
       "artist": "Desmond Dekker",
       "title": "Israelites",
-      "tags": ["hits", "jamaican", "classic"]
+      "tags": ["hits", "jamaican", "retro"]
     },
     {
       "videoId": "b21zIF3lAZo",
       "artist": "Eek-a-Mouse",
       "title": "Ganja Smuggling",
-      "tags": ["jamaican", "smoke", "classic"]            
+      "tags": ["jamaican", "smoke", "retro"]            
     },
     {
       "videoId": "dhlwpO6JEZU",
@@ -138,13 +144,79 @@
       "videoId": "uMUQMSXLlHM",
       "artist": "Bob Marley",
       "title": "Buffalo Soldier",
-      "tags": ["hits", "jamaican", "classic", "chill"]
+      "tags": ["hits", "jamaican", "retro", "chill"]
+    },
+    {
+      "videoId": "H-3WksTtQVQ",
+      "artist": "Morodo",
+      "title": "Presidente",
+      "tags": ["political"]
+    },
+    {
+      "videoId": "1s1jh44uimI",
+      "artist": "The Gaylads",
+      "title": "Someday I Will Be Free",
+      "tags": ["political", "retro", "jamaican"]
+    },
+    {
+      "videoId": "k-2qv3cgB-Q",
+      "artist": "Freddie Mckay",
+      "title": "I'm A Free Man",
+      "tags": ["political", "retro", "jamaican"]
+    },
+    {
+      "videoId": "kwiCbwEa_6Y",
+      "artist": "Mutabaruka",
+      "title": "Blacks In Amerika",
+      "tags": ["political", "retro", "jamaican"]
+    },
+    {
+      "videoId": "y37p8lhKurA",
+      "artist": "Horace Andy",
+      "title": "Government Land",
+      "tags": ["political", "retro", "jamaican"]
+    },
+    {
+      "videoId": "h8rClH-Jbno",
+      "artist": "Kabaka Pyramid",
+      "title": "Well Done",
+      "tags": ["political", "jamaican"]
+    },
+    {
+      "videoId": "LfeIfiiBTfY",
+      "artist": "Chronixx",
+      "title": "Here Comes Trouble",
+      "tags": ["political", "jamaican"]
+    },
+    {
+      "videoId": "vofff0Ei3kk",
+      "artist": "Chronixx",
+      "title": "Smile Jamaica",
+      "tags": ["chill", "jamaican", "happy"]
+    },
+    {
+      "videoId": "1SN7Pko_jCM",
+      "artist": "Peter Tosh",
+      "title": "Equal Rights",
+      "tags": ["political", "jamaican", "retro"]
+    },
+    {
+      "videoId": "wi0Zmes7woA",
+      "artist": "Dennis Brown",
+      "title": "Black Liberation",
+      "tags": ["political", "jamaican", "retro"]
+    },
+    {
+      "videoId": "hftY6i-tQJg",
+      "artist": "Peter Tosh",
+      "title": "No Nuclear War",
+      "tags": ["political", "jamaican", "retro"]
     },
     {
       "videoId": "zXt56MB-3vc",
       "artist": "UB40",
       "title": "Red Red Wine",
-      "tags": ["hits", "classic"]
+      "tags": ["hits", "retro"]
     },
     {
       "videoId": "uc2UEfWjvo8",
