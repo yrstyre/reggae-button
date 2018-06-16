@@ -13,11 +13,11 @@ class Player extends React.Component {
       filterOpen: false
     };
 
-    this.handlePauseButton = this.handlePauseButton.bind(this);
     this.handlePreviousButton = this.handlePreviousButton.bind(this);
     this.handleNextButton = this.handleNextButton.bind(this);
     this.handleFilterButton = this.handleFilterButton.bind(this);
     this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
+    this.handlePause = this.handlePause.bind(this);
 
     this.initYoutubePlayer();
     this.setCurrentSongIdFromHash();
@@ -85,7 +85,8 @@ class Player extends React.Component {
     return false;
   }
 
-  handleNextButton () {
+  handleNextButton (event) {
+    event.stopPropagation();
     const currentSongIndex = this.props.songs.indexOf(this.props.currentSong);
     let nextSongIndex = currentSongIndex + 1;
 
@@ -100,7 +101,8 @@ class Player extends React.Component {
     this.startVideo(nextSongIndex);
   }
 
-  handlePreviousButton () {
+  handlePreviousButton (event) {
+    event.stopPropagation();
     const currentSongIndex = this.props.songs.indexOf(this.props.currentSong);
     let previousSongIndex = currentSongIndex - 1;
 
@@ -115,7 +117,12 @@ class Player extends React.Component {
     this.startVideo(previousSongIndex);
   }
 
-  handlePauseButton () {
+  handleFilterButton (event) {
+    event.stopPropagation();
+    this.setState({ filterOpen: !this.state.filterOpen });
+  }
+
+  handlePause () {
     if (this.state.videoIsPaused) {
       this.setState({ videoIsPaused: false });
       this.player.playVideo();
@@ -123,10 +130,6 @@ class Player extends React.Component {
       this.setState({ videoIsPaused: true });
       this.player.pauseVideo();
     }
-  }
-
-  handleFilterButton () {
-    this.setState({ filterOpen: !this.state.filterOpen });
   }
 
   render () {
@@ -138,15 +141,12 @@ class Player extends React.Component {
           </div>
         </div>
         <div className="controls">
-          <div className="controls__inner">
+          <div className="controls__inner" onClick={this.handlePause}>
             <button className="controls__prev-button" onClick={this.handlePreviousButton}>
               <SVGIcon name="svg-arrow" className="icon--svg-arrow" />
             </button>
             <button className="controls__next-button" onClick={this.handleNextButton}>
               <SVGIcon name="svg-arrow" className="icon--svg-arrow icon--svg-arrow-right" />
-            </button>
-            <button className="controls__pause-button" onClick={this.handlePauseButton}>
-              <SVGIcon name="svg-pause" className="icon--svg-pause" />
             </button>
             <button className="btn btn--purple controls__filter-button" onClick={this.handleFilterButton}>
               Filter button
