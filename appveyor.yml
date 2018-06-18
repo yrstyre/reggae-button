@@ -27,17 +27,14 @@
  
  # Variables
  environment:
-  website_name: thereggaebutton-dev
-  user_name: thereggaebutton-dev
-  website_psw:
-   secure: AAmgwmRqI3Ywku820Qbyf5XO/d7UeHreXYGJEW24cptFuOgJsVqVDu/hr+5k+eevaRtznJ2oyEgaE17xNARuoA==
+  nodejs_version: "6.10.3"
+  APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -tzip -mx=1 -mmt=off
 
  # Build worker image (VM template)
  image: Visual Studio 2017
  
  cache:
-   - c:\users\appveyor\.nuget # Don't check package cache for updating if no changes to packages.config
-   - '%LocalAppData%\NuGet\Cache'
+   - node_modules -> package.json
  
  #---------------------------------#
  #       build configuration       #
@@ -51,45 +48,40 @@
   fast_finish: true
 
  install:
-  - ps: appveyor-retry npm install
-  - ps: mkdir ./wwwroot/dist
-  - ps: npm run dev
+  - ps: Install-Product node $env:nodejs_version x64
+  - npm i npm@3.10.10 -g
+  - npm install
+  #- npm start
 
- build:
-   parallel: true
-   project: thereggaebutton.sln
-   publish_wap: true
-   verbosity: normal
- 
- before_build:
-   - cmd: dotnet restore
- build_script:
-  # Build and publish HittaHemApi service
-   - cmd: dotnet build .\TheReggaeButton
-   - cmd: dotnet publish .\TheReggaeButton --output %appveyor_build_folder%\AppOutput
+ build: off
  
  #---------------------------------#
  #     deployment configuration    #
  #---------------------------------#
 
  artifacts:
-  - path: AppOutput
-    name: AppOutput
-
- deploy_script:
-  # Deploy web app
-  - '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -source:IisApp=''%appveyor_build_folder%\AppOutput'' -dest:IisApp=''%website_name%'',ComputerName=''https://%website_name%.scm.azurewebsites.net/msdeploy.axd'',UserName=''$%user_name%'',Password=''%website_psw%'',IncludeAcls=''False'',AuthType=''Basic'' -verb:sync -enablerule:AppOffline -enableRule:DoNotDeleteRule -retryAttempts:2'
-  
+  - path: \
+ 
+ deploy: 
+   provider: FTP
+   protocol: ftps
+   host: am3.fcomet.com
+   username:
+     secure: QGOINIuwJ+eMpNdMnFEuJw==
+   password:
+     secure: OKd/7gTlIE14wHWOtK5FXQ==
+   folder: dev.thereggaebutton.com
+   
  #---------------------------------#
  #         notifications           #
  #---------------------------------#
 
 # notifications:
 #  - provider: Slack
-#    incoming_webhook: https://hooks.slack.com/services/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
+#    incoming_webhook: 
 
-# on_finish:
-#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+ #on_finish:
+ #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 #////////////////////////////////////////////////////////////////////#
 #                        Master Configuration                       #
@@ -166,7 +158,7 @@
 
 # notifications:
 #  - provider: Slack
-#    incoming_webhook: https://hooks.slack.com/services/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
+#    incoming_webhook:
 
 # on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
