@@ -3,7 +3,8 @@
     {
       "videoId": "bsoiupLME-w",
       "artist": "Alpha Blondy",
-      "title": "I Wish You Were Here"
+      "title": "I Wish You Were Here",
+      "tags": ["cover"]
     },
     {
       "videoId": "o13RCkeoaQA",
@@ -249,6 +250,40 @@
       "videoId": "I7TDPMGTLUc",
       "artist": "Tanya Stephens",
       "title": "These Streets"
+    },
+    {
+      "videoId": "AM8M-HHSbp0",
+      "artist": "Ziggy Marley And The Melody Makers",
+      "title": "Tomorrow People"
+    },
+    {
+      "videoId": "tgkegHprxDg",
+      "artist": "Barrington Levy",
+      "title": "My Bible"
+    },
+    {
+      "videoId": "lgL_gSx8cWE",
+      "artist": "General Knas",
+      "title": "Dr. Cannabis",
+      "tags": ["world", "smoke"]
+    },
+    {
+      "videoId": "u1y-Atbu1S4",
+      "artist": "Kaliffa",
+      "title": "Det Strålar Så Om Dej",
+      "tags": ["world", "happy"]
+    },
+    {
+      "videoId": "rscYP8NhWC0",
+      "artist": "Rosie Delmah",
+      "title": "When We Were Young",
+      "tags": ["happy", "cover"]
+    },
+    {
+      "videoId": "zz3PC1fK3qE",
+      "artist": "Chris Martin",
+      "title": "Let Her Go",
+      "tags": ["chill", "cover"]
     }
   ]
 }
