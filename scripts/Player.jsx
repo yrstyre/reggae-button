@@ -142,13 +142,13 @@ class Player extends React.Component {
         </div>
         <div className="controls">
           <div className="controls__inner" onClick={this.handlePause}>
-            <button className="controls__prev-button" onClick={this.handlePreviousButton}>
+            <button className="controls__prev-button icon icon--yellow" onClick={this.handlePreviousButton}>
               <SVGIcon name="svg-arrow" className="icon--svg-arrow" />
             </button>
-            <button className="controls__next-button" onClick={this.handleNextButton}>
+            <button className="controls__next-button icon icon--yellow" onClick={this.handleNextButton}>
               <SVGIcon name="svg-arrow" className="icon--svg-arrow icon--svg-arrow-right" />
             </button>
-            <button className="btn btn--purple controls__filter-button" onClick={this.handleFilterButton}>
+            <button className="btn btn--yellow controls__filter-button" onClick={this.handleFilterButton}>
               Filter button
             </button>
             <div className="controls__title">

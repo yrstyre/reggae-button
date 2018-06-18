@@ -1,7 +1,9 @@
 button {
+  cursor: pointer;
   background: none;
-  border: none;
+  border: 0;
   padding: 0;
+  user-select: none;
 
   &:focus {
     outline: none;
@@ -9,16 +11,55 @@ button {
 }
 
 .btn {
-  background: none;
-  border: 2px solid;
-  border-bottom-width: 4px;
-  font: inherit;
-  letter-spacing: inherit;
   padding: 1rem 2rem;
-  text-transform: inherit;
-  cursor: pointer;
+  box-shadow: inset 0 0 0 2px $white;
+  color: $white;
+  font-size: inherit;
+  font-weight: 600;
 
-  &--purple {
-    background: $rebecca-purple;
+  &::before,
+  &::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+  }
+
+  &:hover::before,
+  &:hover::after {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover::before {
+    transition:
+      width 0.2s ease-out,
+      height 0.2s ease-out 0.2s;
+  }
+
+  &:hover::after {
+    transition:
+      height 0.2s ease-out,
+      width 0.2s ease-out 0.2s;
+  }
+
+  &--yellow {
+    &:hover {
+      color: $selective-yellow;
+    }
+
+    &:hover::before {
+      border-top-color: $selective-yellow;
+      border-right-color: $selective-yellow;
+    }
+  
+    &:hover::after {
+      border-bottom-color: $selective-yellow;
+      border-left-color: $selective-yellow;
+    }
   }
 }

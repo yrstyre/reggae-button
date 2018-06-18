@@ -51,12 +51,8 @@ html {
     margin: 3rem;
   }
 
-  &__filter-button, &__prev-button, &__next-button, &__pause-button {
+  &__filter-button, &__prev-button, &__next-button {
     position: absolute;
-  }
-
-  &__prev-button, &__next-button, &__pause-button {
-    opacity: 0.7;
   }
 
   &__filter-button {
@@ -69,12 +65,6 @@ html {
   }
 
   &__next-button {
-    right: 0;
-  }
-
-  &__pause-button {
-    position: absolute;
-    bottom: 3rem;
     right: 0;
   }
 

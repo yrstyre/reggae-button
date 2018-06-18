@@ -1,4 +1,16 @@
 .icon {
+  use {
+    transition: all 0.2s ease-out;
+  }
+
+  &--yellow {
+    &:hover {
+      use {
+        fill: $selective-yellow;
+      }
+    }
+  }
+
   &--svg-arrow {
     cursor: pointer;
     width: 35px;
