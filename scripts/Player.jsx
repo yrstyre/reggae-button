@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setCurrentSong } from './actions';
 import SVGIcon from './SVGIcon.jsx';
+import Filter from './Filter.jsx';
 
 class Player extends React.Component {
   constructor (props) {
@@ -10,7 +11,7 @@ class Player extends React.Component {
 
     this.state = {
       videoIsPaused: false,
-      filterOpen: false
+      displayFilter: false
     };
 
     this.handlePreviousButton = this.handlePreviousButton.bind(this);
@@ -18,6 +19,7 @@ class Player extends React.Component {
     this.handleFilterButton = this.handleFilterButton.bind(this);
     this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
     this.handlePause = this.handlePause.bind(this);
+    this.handleCloseFilterButton = this.handleCloseFilterButton.bind(this);
 
     this.initYoutubePlayer();
     this.setCurrentSongIdFromHash();
@@ -119,7 +121,11 @@ class Player extends React.Component {
 
   handleFilterButton (event) {
     event.stopPropagation();
-    this.setState({ filterOpen: !this.state.filterOpen });
+    this.setState({ displayFilter: !this.state.displayFilter });
+  }
+
+  handleCloseFilterButton () {
+    this.setState({ displayFilter: false });
   }
 
   handlePause () {
@@ -148,21 +154,24 @@ class Player extends React.Component {
             <button className="controls__next-button icon icon--yellow" onClick={this.handleNextButton}>
               <SVGIcon name="svg-arrow" className="icon--svg-arrow icon--svg-arrow-right" />
             </button>
-            <button className="btn btn--yellow controls__filter-button" onClick={this.handleFilterButton}>
-              Filter button
-            </button>
+            { this.state.displayFilter
+              ? null
+              : (
+                <button className="btn btn--yellow controls__filter-button" onClick={this.handleFilterButton}>
+                  Filter button
+                </button>
+              )
+            }
             <div className="controls__title">
               <h3 className="controls__title--artist">{this.props.currentSong.artist}</h3>
               <h4 className="controls__title--song-title">{this.props.currentSong.title}</h4>
             </div>
           </div>
-          <div className={`filter ${this.state.filterOpen ? 'filter--show' : ''}`}>
-            <p>True Jamaican</p>
-            <p>Mellow</p>
-            <p>Political</p>
-            <p>World wide</p>
-          </div>
         </div>
+        <Filter
+          displayFilter={this.state.displayFilter}
+          onCloseFilterClick={this.handleCloseFilterButton}
+        />
       </div>
     );
   }

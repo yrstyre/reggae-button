@@ -1,6 +1,23 @@
 .icon {
   use {
+    fill: $white;
     transition: all 0.2s ease-out;
+  }
+
+  &--svg-arrow {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+  }
+
+  &--svg-arrow-right {
+    transform: rotate(180deg);
+  }
+
+  &--svg-cross {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
   }
 
   &--yellow {
@@ -9,29 +26,5 @@
         fill: $selective-yellow;
       }
     }
-  }
-
-  &--svg-arrow {
-    cursor: pointer;
-    width: 35px;
-    height: 35px;
-
-    use {
-      fill: $white;
-    }
-  }
-
-  &--svg-arrow-right {
-    transform: rotate(180deg);
-  }
-
-  &--svg-pause {
-    cursor: pointer;
-    height: 30px;
-    width: 30px;
-  }
-
-  use {
-    fill: $white;
   }
 }

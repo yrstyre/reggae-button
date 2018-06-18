@@ -5,10 +5,15 @@
 @import './buttons.scss';
 @import './icons.scss';
 @import './background.scss';
+@import './filter.scss';
 
 html {
   box-sizing: border-box;
   font-family: FiraSans, sans-serif;
+}
+
+body {
+  margin: 0;
 }
 
 .startpage {
@@ -103,18 +108,6 @@ html {
   &__inner {
     width: 100%;
     height: 100%;
-  }
-}
-
-.filter {
-  display: none;
-  max-width: 500px;
-  width: 100%;
-  justify-content: space-between;
-  color: $white;
-
-  &--show {
-    display: flex;
   }
 }
 
