@@ -111,15 +111,16 @@ body {
   }
 }
 
-$extra-small: "only screen and (max-width: 768px)";
-$small: "only screen and (min-width: 769px) and (max-width: 991px)";
-
-@media #{$extra-small} {
-  .skip-arrow {
-    width: 30px;
-  }
-
-  .svg-pause {
-    width: 25px;
+@media all and (min-width: 73em) {
+  .controls {
+    &__title {
+      &--artist {
+        font-size: $heading-alpha;
+      }
+  
+      &--song-title {
+        font-size: $heading-bravo;
+      }
+    }
   }
 }
