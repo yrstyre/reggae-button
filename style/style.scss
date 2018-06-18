@@ -4,10 +4,27 @@
 @import './colors.scss';
 @import './buttons.scss';
 @import './icons.scss';
+@import './background.scss';
 
 html {
-    box-sizing: border-box;
-    font-family: FiraSans, sans-serif;
+  box-sizing: border-box;
+  font-family: FiraSans, sans-serif;
+}
+
+.startpage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0 auto;
+
+  &__button {
+    color: $white;
+    font-size: 6vw;
+    font-weight: 400;
+    z-index: 1000;
+  }
 }
 
 .controls {
@@ -28,7 +45,6 @@ html {
     top: 0;
     bottom: 0;
     color: $white;
-    // font-family: Avenir, Helvetica, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,7 +121,7 @@ html {
   max-width: 500px;
   width: 100%;
   justify-content: space-between;
-  color: white;
+  color: $white;
 
   &--show {
     display: flex;

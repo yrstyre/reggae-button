@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setCurrentSong } from './actions';
+import Background from './Background.jsx';
 
 class StartPage extends React.Component {
   constructor (props) {
     super(props);
-
     props.setCurrentSong(props.songs[0]);
   }
 
@@ -16,8 +16,9 @@ class StartPage extends React.Component {
 
   render () {
     return (
-      <div>
-        <Link to={`/${this.props.songs[0].videoId}`} className="btn">Stir it up!</Link>
+      <div className="startpage">
+        <Background />
+        <Link to={`/${this.props.songs[0].videoId}`} className="btn startpage__button">Stir it up!</Link>
       </div>
     );
   }

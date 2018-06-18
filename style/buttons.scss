@@ -16,9 +16,7 @@ button {
   letter-spacing: inherit;
   padding: 1rem 2rem;
   text-transform: inherit;
-  transition: color 1s, opacity 0.3s;
   cursor: pointer;
-  opacity: 1;
 
   &--purple {
     background: $rebecca-purple;
