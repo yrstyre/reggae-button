@@ -11,18 +11,29 @@ class Player extends React.Component {
 
     this.state = {
       videoIsPaused: false,
-      displayFilter: false
+      displayFilter: false,
+      isMuted: false
     };
 
     this.handlePreviousButton = this.handlePreviousButton.bind(this);
     this.handleNextButton = this.handleNextButton.bind(this);
     this.handleFilterButton = this.handleFilterButton.bind(this);
+    this.handleMuteButton = this.handleMuteButton.bind(this);
     this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
     this.handlePause = this.handlePause.bind(this);
     this.handleCloseFilterButton = this.handleCloseFilterButton.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
 
     this.initYoutubePlayer();
     this.setCurrentSongIdFromHash();
+  }
+
+  componentDidMount () {
+    document.addEventListener('keydown', this.handleKeyPress);
+  }
+
+  componentDidUnMount () {
+    document.removeEventListener('keydown', this.handleKeyPress);
   }
 
   initYoutubePlayer () {
@@ -70,25 +81,7 @@ class Player extends React.Component {
     this.player.loadVideoById(this.props.songs[songIndex].videoId);
   }
 
-  onPlayerStateChange (event) {
-    switch (event.data) {
-      case -1: // ready
-        break;
-      case 0: // end
-        this.handleNextButton();
-        break;
-      case 1: // playing
-        break;
-      case 2: // paused
-        break;
-      case 3: // buffering
-        break;
-    }
-    return false;
-  }
-
-  handleNextButton (event) {
-    event.stopPropagation();
+  playNext () {
     const currentSongIndex = this.props.songs.indexOf(this.props.currentSong);
     let nextSongIndex = currentSongIndex + 1;
 
@@ -103,8 +96,7 @@ class Player extends React.Component {
     this.startVideo(nextSongIndex);
   }
 
-  handlePreviousButton (event) {
-    event.stopPropagation();
+  playPrevious () {
     const currentSongIndex = this.props.songs.indexOf(this.props.currentSong);
     let previousSongIndex = currentSongIndex - 1;
 
@@ -119,6 +111,39 @@ class Player extends React.Component {
     this.startVideo(previousSongIndex);
   }
 
+  muteSound () {
+    const isMuted = this.player.isMuted();
+    isMuted ? this.player.unMute() : this.player.mute();
+    this.setState({ isMuted: !isMuted });
+  }
+
+  onPlayerStateChange (event) {
+    switch (event.data) {
+      case -1: // ready
+        break;
+      case 0: // end
+        this.playNext();
+        break;
+      case 1: // playing
+        break;
+      case 2: // paused
+        break;
+      case 3: // buffering
+        break;
+    }
+    return false;
+  }
+
+  handleNextButton (event) {
+    event.stopPropagation();
+    this.playNext();
+  }
+
+  handlePreviousButton (event) {
+    event.stopPropagation();
+    this.playPrevious();
+  }
+
   handleFilterButton (event) {
     event.stopPropagation();
     this.setState({ displayFilter: !this.state.displayFilter });
@@ -126,6 +151,11 @@ class Player extends React.Component {
 
   handleCloseFilterButton () {
     this.setState({ displayFilter: false });
+  }
+
+  handleMuteButton (event) {
+    event.stopPropagation();
+    this.muteSound();
   }
 
   handlePause () {
@@ -136,6 +166,47 @@ class Player extends React.Component {
       this.setState({ videoIsPaused: true });
       this.player.pauseVideo();
     }
+  }
+
+  requestFullScreen () {
+    const element = document.body;
+    // Supports most browsers and their versions.
+    var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+
+    if (requestMethod) { // Native full screen.
+      requestMethod.call(element);
+    }
+  }
+
+  handleKeyPress (event) {
+    switch (event.keyCode) {
+      case 32: // Space bar - Pause video
+        this.handlePause();
+        break;
+      case 37: // Left arrow - Seek backwards 5 seconds
+        this.player.seekTo(this.player.getCurrentTime() - 5, true);
+        break;
+      case 39: // Right arrow - Seek forward 5 seconds
+        this.player.seekTo(this.player.getCurrentTime() + 5, true);
+        break;
+      case 48: // 0 - restart video
+        this.startVideo(this.props.songs.indexOf(this.props.currentSong));
+        break;
+      case 77: { // M - mute sound
+        this.muteSound();
+        break;
+      }
+      case 78: // Shift + N - Play next song
+        this.playNext();
+        break;
+      case 80: // Shift + P - Play previous song
+        this.playPrevious();
+        break;
+      case 102: // F - Fullscreen mode
+        this.requestFullScreen();
+        break;
+    }
+    return false;
   }
 
   render () {
@@ -166,6 +237,11 @@ class Player extends React.Component {
               <h3 className="controls__title--artist">{this.props.currentSong.artist}</h3>
               <h4 className="controls__title--song-title">{this.props.currentSong.title}</h4>
             </div>
+            <button className="controls__volume" onClick={this.handleMuteButton}>
+              { this.state.isMuted
+                ? <SVGIcon name="svg-volume-muted" className="icon--svg-volume-muted" />
+                : <SVGIcon name="svg-volume-high" className="icon--svg-volume-high" /> }
+            </button>
           </div>
         </div>
         <Filter

@@ -20,6 +20,12 @@
     height: 35px;
   }
 
+  &--svg-volume-high, &--svg-volume-muted {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+  }
+
   &--yellow {
     &:hover {
       use {

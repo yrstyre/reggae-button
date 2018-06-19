@@ -56,7 +56,7 @@ body {
     margin: 3rem;
   }
 
-  &__filter-button, &__prev-button, &__next-button {
+  &__filter-button, &__prev-button, &__next-button, &__volume {
     position: absolute;
   }
 
@@ -70,6 +70,11 @@ body {
   }
 
   &__next-button {
+    right: 0;
+  }
+
+  &__volume {
+    bottom: 0;
     right: 0;
   }
 
