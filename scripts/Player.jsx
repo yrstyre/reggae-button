@@ -192,6 +192,9 @@ class Player extends React.Component {
       case 48: // 0 - restart video
         this.startVideo(this.props.songs.indexOf(this.props.currentSong));
         break;
+      case 70: // F - Fullscreen mode
+        this.requestFullScreen();
+        break;
       case 77: { // M - mute sound
         this.muteSound();
         break;
@@ -201,9 +204,6 @@ class Player extends React.Component {
         break;
       case 80: // Shift + P - Play previous song
         this.playPrevious();
-        break;
-      case 102: // F - Fullscreen mode
-        this.requestFullScreen();
         break;
     }
     return false;
@@ -237,7 +237,7 @@ class Player extends React.Component {
               <h3 className="controls__title--artist">{this.props.currentSong.artist}</h3>
               <h4 className="controls__title--song-title">{this.props.currentSong.title}</h4>
             </div>
-            <button className="controls__volume" onClick={this.handleMuteButton}>
+            <button className="controls__volume icon--yellow" onClick={this.handleMuteButton}>
               { this.state.isMuted
                 ? <SVGIcon name="svg-volume-muted" className="icon--svg-volume-muted" />
                 : <SVGIcon name="svg-volume-high" className="icon--svg-volume-high" /> }
