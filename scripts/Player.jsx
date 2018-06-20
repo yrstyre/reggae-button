@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setCurrentSong } from './actions';
 import { DURATIONS } from './constants';
-import SVGIcon from './SVGIcon.jsx';
 import Filter from './Filter.jsx';
+import Controls from './Controls.jsx';
 
 const userInteractionEvents = ['keyup', 'mousedown', 'pointerdown', 'touchstart', 'mousemove'];
 
@@ -21,15 +21,16 @@ class Player extends React.Component {
 
     this.timeoutHandle = 0;
 
-    this.handlePreviousButton = this.handlePreviousButton.bind(this);
-    this.handleNextButton = this.handleNextButton.bind(this);
-    this.handleFilterButton = this.handleFilterButton.bind(this);
-    this.handleMuteButton = this.handleMuteButton.bind(this);
     this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
     this.handlePause = this.handlePause.bind(this);
+    this.muteSound = this.muteSound.bind(this);
     this.handleCloseFilterButton = this.handleCloseFilterButton.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleTimeout = this.handleTimeout.bind(this);
+    this.playNext = this.playNext.bind(this);
+    this.playPrevious = this.playPrevious.bind(this);
+    this.seekForward = this.seekForward.bind(this);
+    this.seekBackwards = this.seekBackwards.bind(this);
+    this.restartVideo = this.restartVideo.bind(this);
 
     this.initYoutubePlayer();
     this.setCurrentSongIdFromHash();
@@ -40,12 +41,10 @@ class Player extends React.Component {
   componentWillUnmount () {
     clearTimeout(this.timeoutHandle);
     userInteractionEvents.forEach(e => document.removeEventListener(e, this.handleTimeout, false));
-    document.removeEventListener('keydown', this.handleKeyPress);
   }
 
   componentDidMount () {
     this.handleTimeout();
-    document.addEventListener('keydown', this.handleKeyPress);
   }
 
   handleTimeout () {
@@ -157,28 +156,12 @@ class Player extends React.Component {
     return false;
   }
 
-  handleNextButton (event) {
-    event.stopPropagation();
-    this.playNext();
-  }
-
-  handlePreviousButton (event) {
-    event.stopPropagation();
-    this.playPrevious();
-  }
-
-  handleFilterButton (event) {
-    event.stopPropagation();
+  toggleFilter () {
     this.setState({ displayFilter: !this.state.displayFilter });
   }
 
   handleCloseFilterButton () {
     this.setState({ displayFilter: false });
-  }
-
-  handleMuteButton (event) {
-    event.stopPropagation();
-    this.muteSound();
   }
 
   handlePause () {
@@ -201,35 +184,16 @@ class Player extends React.Component {
     }
   }
 
-  handleKeyPress (event) {
-    switch (event.keyCode) {
-      case 32: // Space bar - Pause video
-        this.handlePause();
-        break;
-      case 37: // Left arrow - Seek backwards 5 seconds
-        this.player.seekTo(this.player.getCurrentTime() - 5, true);
-        break;
-      case 39: // Right arrow - Seek forward 5 seconds
-        this.player.seekTo(this.player.getCurrentTime() + 5, true);
-        break;
-      case 48: // 0 - restart video
-        this.startVideo(this.props.songs.indexOf(this.props.currentSong));
-        break;
-      case 70: // F - Fullscreen mode
-        this.requestFullScreen();
-        break;
-      case 77: { // M - mute sound
-        this.muteSound();
-        break;
-      }
-      case 78: // Shift + N - Play next song
-        this.playNext();
-        break;
-      case 80: // Shift + P - Play previous song
-        this.playPrevious();
-        break;
-    }
-    return false;
+  restartVideo () {
+    this.startVideo(this.props.songs.indexOf(this.props.currentSong));
+  }
+
+  seekForward () {
+    this.player.seekTo(this.player.getCurrentTime() + 5, true);
+  }
+
+  seekBackwards () {
+    this.player.seekTo(this.player.getCurrentTime() - 5, true);
   }
 
   render () {
@@ -240,29 +204,20 @@ class Player extends React.Component {
             <div id="player"></div>
           </div>
         </div>
-        <div className={`controls ${this.state.isInactive ? 'controls--hide' : ''}`}>
-          <div className="controls__inner" onClick={this.handlePause}>
-            <button className="controls__prev-button icon icon--yellow" onClick={this.handlePreviousButton}>
-              <SVGIcon name="svg-arrow" className="icon--svg-arrow" />
-            </button>
-            <button className="controls__next-button icon icon--yellow" onClick={this.handleNextButton}>
-              <SVGIcon name="svg-arrow" className="icon--svg-arrow icon--svg-arrow-right" />
-            </button>
-            { this.state.displayFilter
-              ? null
-              : (
-                <button className="btn btn--yellow controls__filter-button" onClick={this.handleFilterButton}>
-                  Filter button
-                </button>
-              )
-            }
-            <button className="controls__volume icon--yellow" onClick={this.handleMuteButton}>
-              { this.state.isMuted
-                ? <SVGIcon name="svg-volume-muted" className="icon--svg-volume-muted" />
-                : <SVGIcon name="svg-volume-high" className="icon--svg-volume-high" /> }
-            </button>
-          </div>
-        </div>
+        <Controls
+          displayFilter={this.state.displayFilter}
+          onHandlePause={this.handlePause}
+          isInactive={this.state.isInactive}
+          isMuted={this.state.isMuted}
+          muteSound={this.muteSound}
+          playNext={this.playNext}
+          playPrevious={this.playPrevious}
+          requestFullScreen={this.requestFullScreen}
+          restartVideo={this.restartVideo}
+          seekBackwards={this.seekBackwards}
+          seekForward={this.seekForward}
+          toggleFilter={this.toggleFilter}
+        />
         <div className={`player__title ${this.state.isInactive ? 'player__title--hide' : ''}`}>
           <h3 className="player__title--artist">{this.props.currentSong.artist}</h3>
           <h4 className="player__title--song-title">{this.props.currentSong.title}</h4>
