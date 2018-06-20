@@ -2,8 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setCurrentSong } from './actions';
+import { DURATIONS } from './constants';
 import SVGIcon from './SVGIcon.jsx';
 import Filter from './Filter.jsx';
+
+const userInteractionEvents = ['keyup', 'mousedown', 'pointerdown', 'touchstart', 'mousemove'];
 
 class Player extends React.Component {
   constructor (props) {
@@ -12,8 +15,11 @@ class Player extends React.Component {
     this.state = {
       videoIsPaused: false,
       displayFilter: false,
-      isMuted: false
+      isMuted: false,
+      isInactive: false
     };
+
+    this.timeoutHandle = 0;
 
     this.handlePreviousButton = this.handlePreviousButton.bind(this);
     this.handleNextButton = this.handleNextButton.bind(this);
@@ -23,17 +29,34 @@ class Player extends React.Component {
     this.handlePause = this.handlePause.bind(this);
     this.handleCloseFilterButton = this.handleCloseFilterButton.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleTimeout = this.handleTimeout.bind(this);
 
     this.initYoutubePlayer();
     this.setCurrentSongIdFromHash();
+
+    userInteractionEvents.forEach(e => document.addEventListener(e, this.handleTimeout, false));
+  }
+
+  componentWillUnmount () {
+    clearTimeout(this.timeoutHandle);
+    userInteractionEvents.forEach(e => document.removeEventListener(e, this.handleTimeout, false));
+    document.removeEventListener('keydown', this.handleKeyPress);
   }
 
   componentDidMount () {
+    this.handleTimeout();
     document.addEventListener('keydown', this.handleKeyPress);
   }
 
-  componentDidUnMount () {
-    document.removeEventListener('keydown', this.handleKeyPress);
+  handleTimeout () {
+    clearTimeout(this.timeoutHandle);
+    if (this.state.isInactive) {
+      this.setState({ isInactive: false });
+    }
+
+    this.timeoutHandle = setTimeout(() => {
+      this.setState({ isInactive: true });
+    }, DURATIONS.CONTROLS_VISIBLE);
   }
 
   initYoutubePlayer () {
@@ -217,7 +240,7 @@ class Player extends React.Component {
             <div id="player"></div>
           </div>
         </div>
-        <div className="controls">
+        <div className={`controls ${this.state.isInactive ? 'controls--hide' : ''}`}>
           <div className="controls__inner" onClick={this.handlePause}>
             <button className="controls__prev-button icon icon--yellow" onClick={this.handlePreviousButton}>
               <SVGIcon name="svg-arrow" className="icon--svg-arrow" />
@@ -233,16 +256,16 @@ class Player extends React.Component {
                 </button>
               )
             }
-            <div className="controls__title">
-              <h3 className="controls__title--artist">{this.props.currentSong.artist}</h3>
-              <h4 className="controls__title--song-title">{this.props.currentSong.title}</h4>
-            </div>
             <button className="controls__volume icon--yellow" onClick={this.handleMuteButton}>
               { this.state.isMuted
                 ? <SVGIcon name="svg-volume-muted" className="icon--svg-volume-muted" />
                 : <SVGIcon name="svg-volume-high" className="icon--svg-volume-high" /> }
             </button>
           </div>
+        </div>
+        <div className={`player__title ${this.state.isInactive ? 'player__title--hide' : ''}`}>
+          <h3 className="player__title--artist">{this.props.currentSong.artist}</h3>
+          <h4 className="player__title--song-title">{this.props.currentSong.title}</h4>
         </div>
         <Filter
           displayFilter={this.state.displayFilter}
