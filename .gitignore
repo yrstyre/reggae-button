@@ -1,7 +1,13 @@
 # ignore built files
+######################
 /dist/*
 
+# Logs
+######################
+*.log
+
 # Others
+######################
 *.orig
 .vscode/*
 node_modules/
