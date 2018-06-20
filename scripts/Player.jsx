@@ -13,10 +13,11 @@ class Player extends React.Component {
     super(props);
 
     this.state = {
-      videoIsPaused: false,
+      isPaused: false,
       displayFilter: false,
       isMuted: false,
-      isInactive: false
+      isInactive: false,
+      formIsOpen: false
     };
 
     this.timeoutHandle = 0;
@@ -31,6 +32,8 @@ class Player extends React.Component {
     this.seekForward = this.seekForward.bind(this);
     this.seekBackwards = this.seekBackwards.bind(this);
     this.restartVideo = this.restartVideo.bind(this);
+    this.toggleFilter = this.toggleFilter.bind(this);
+    this.toggleFormOpen = this.toggleFormOpen.bind(this);
 
     this.initYoutubePlayer();
     this.setCurrentSongIdFromHash();
@@ -114,7 +117,7 @@ class Player extends React.Component {
     const nextSong = this.props.songs[nextSongIndex];
     this.props.setCurrentSong(nextSong);
     this.props.history.push(`/${nextSong.videoId}`);
-    this.setState({ videoIsPaused: false });
+    this.setState({ isPaused: false });
     this.startVideo(nextSongIndex);
   }
 
@@ -129,7 +132,7 @@ class Player extends React.Component {
     const previousSong = this.props.songs[previousSongIndex];
     this.props.setCurrentSong(previousSong);
     this.props.history.push(`/${previousSong.videoId}`);
-    this.setState({ videoIsPaused: false });
+    this.setState({ isPaused: false });
     this.startVideo(previousSongIndex);
   }
 
@@ -165,11 +168,11 @@ class Player extends React.Component {
   }
 
   handlePause () {
-    if (this.state.videoIsPaused) {
-      this.setState({ videoIsPaused: false });
+    if (this.state.isPaused) {
+      this.setState({ isPaused: false });
       this.player.playVideo();
     } else {
-      this.setState({ videoIsPaused: true });
+      this.setState({ isPaused: true });
       this.player.pauseVideo();
     }
   }
@@ -196,6 +199,10 @@ class Player extends React.Component {
     this.player.seekTo(this.player.getCurrentTime() - 5, true);
   }
 
+  toggleFormOpen () {
+    this.setState({ formIsOpen: !this.state.formIsOpen });
+  }
+
   render () {
     return (
       <div>
@@ -206,6 +213,7 @@ class Player extends React.Component {
         </div>
         <Controls
           displayFilter={this.state.displayFilter}
+          formIsOpen={this.state.formIsOpen}
           onHandlePause={this.handlePause}
           isInactive={this.state.isInactive}
           isMuted={this.state.isMuted}
@@ -217,6 +225,7 @@ class Player extends React.Component {
           seekBackwards={this.seekBackwards}
           seekForward={this.seekForward}
           toggleFilter={this.toggleFilter}
+          toggleFormOpen={this.toggleFormOpen}
         />
         <div className={`player__title ${this.state.isInactive ? 'player__title--hide' : ''}`}>
           <h3 className="player__title--artist">{this.props.currentSong.artist}</h3>

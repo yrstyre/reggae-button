@@ -5,9 +5,8 @@
   }
 
   &--svg-arrow {
-    cursor: pointer;
-    width: 35px;
-    height: 35px;
+    width: 65px;
+    height: 65px;
   }
 
   &--svg-arrow-right {
@@ -15,13 +14,16 @@
   }
 
   &--svg-cross {
-    cursor: pointer;
     width: 35px;
     height: 35px;
   }
 
-  &--svg-volume-high, &--svg-volume-muted {
-    cursor: pointer;
+  &--svg-volume-high, &--svg-volume-mute {
+    width: 35px;
+    height: 35px;
+  }
+
+  &--svg-envelope {
     width: 35px;
     height: 35px;
   }

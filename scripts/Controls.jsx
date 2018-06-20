@@ -10,6 +10,7 @@ class Controls extends React.Component {
     this.handlePreviousButton = this.handlePreviousButton.bind(this);
     this.handleMuteButton = this.handleMuteButton.bind(this);
     this.handleFilterButton = this.handleFilterButton.bind(this);
+    this.handleFormButton = this.handleFormButton.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
 
     document.addEventListener('keydown', this.handleKeyPress);
@@ -41,6 +42,11 @@ class Controls extends React.Component {
   handleFilterButton (event) {
     event.stopPropagation();
     this.props.toggleFilter();
+  }
+
+  handleFormButton (event) {
+    event.stopPropagation();
+    this.props.toggleFormOpen();
   }
 
   handleKeyPress (event) {
@@ -92,11 +98,18 @@ class Controls extends React.Component {
               </button>
             )
           }
-          <button className="controls__volume icon--yellow" onClick={this.handleMuteButton}>
-            { this.props.isMuted
-              ? <SVGIcon name="svg-volume-muted" className="icon--svg-volume-muted" />
-              : <SVGIcon name="svg-volume-high" className="icon--svg-volume-high" /> }
-          </button>
+          <div className="controls__right-container">
+            <button className="controls__volume icon--yellow" onClick={this.handleMuteButton}>
+              { this.props.isMuted
+                ? <SVGIcon name="svg-volume-mute" className="icon--svg-volume-mute" />
+                : <SVGIcon name="svg-volume-high" className="icon--svg-volume-high" /> }
+            </button>
+            <button className="controls__form" onClick={this.handleFormButton}>
+              { this.props.formIsOpen
+                ? <SVGIcon name="svg-envelope-open" className="icon--svg-envelope" />
+                : <SVGIcon name="svg-envelope" className="icon--svg-envelope" /> }
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -105,6 +118,7 @@ class Controls extends React.Component {
 
 Controls.propTypes = {
   displayFilter: PropTypes.bool.isRequired,
+  formIsOpen: PropTypes.bool.isRequired,
   isInactive: PropTypes.bool.isRequired,
   isMuted: PropTypes.bool.isRequired,
   muteSound: PropTypes.func.isRequired,
@@ -115,7 +129,8 @@ Controls.propTypes = {
   restartVideo: PropTypes.func.isRequired,
   seekBackwards: PropTypes.func.isRequired,
   seekForward: PropTypes.func.isRequired,
-  toggleFilter: PropTypes.func.isRequired
+  toggleFilter: PropTypes.func.isRequired,
+  toggleFormOpen: PropTypes.func.isRequired
 };
 
 export default Controls;

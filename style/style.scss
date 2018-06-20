@@ -58,7 +58,7 @@ body {
     margin: 3rem;
   }
 
-  &__filter-button, &__prev-button, &__next-button, &__volume {
+  &__filter-button, &__prev-button, &__next-button, &__right-container {
     position: absolute;
   }
 
@@ -75,9 +75,15 @@ body {
     right: 0;
   }
 
-  &__volume {
+  &__right-container {
     bottom: 0;
     right: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__volume {
+    margin-bottom: 1.7rem;
   }
 
   &--hide {
