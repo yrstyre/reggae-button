@@ -51,7 +51,7 @@
   - ps: Install-Product node $env:nodejs_version x64
   - npm i npm@3.10.10 -g
   - npm install
-  #- npm start
+  - npm run build
 
  build: off
  
@@ -60,7 +60,7 @@
  #---------------------------------#
 
  artifacts:
-  - path: \
+  - path: dist
  
  deploy: 
    provider: FTP
@@ -80,8 +80,8 @@
 #  - provider: Slack
 #    incoming_webhook: 
 
- #on_finish:
- #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#  on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 #////////////////////////////////////////////////////////////////////#
 #                        Master Configuration                       #
