@@ -5,7 +5,7 @@
 // Regular
 @font-face {
   font-family: 'FiraSans';
-  src: url('#{$firasans-font-path}FiraSans-Regular.ttf') format("truetype");
+  src: url('/dist/FiraSans-Regular.ttf') format("truetype");
   font-weight: 400;
   font-style: normal;
 }
@@ -13,7 +13,7 @@
 // SemiBold
 @font-face {
   font-family: 'FiraSans';
-  src: url('#{$firasans-font-path}FiraSans-SemiBold.ttf') format("truetype");
+  src: url('/dist/FiraSans-SemiBold.ttf') format("truetype");
   font-weight: 600;
   font-style: normal;
 }
@@ -21,7 +21,7 @@
 // Bold
 @font-face {
   font-family: 'FiraSans';
-  src: url('#{$firasans-font-path}FiraSans-Bold.ttf') format("truetype");
+  src: url('/dist/FiraSans-Bold.ttf') format("truetype");
   font-weight: 900;
   font-style: normal;
 }
