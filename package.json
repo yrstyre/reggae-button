@@ -4,6 +4,7 @@
   "description": "Coming soon!",
   "main": "main.js",
   "scripts": {
+    "build": "webpack",
     "start": "webpack-dev-server --hot",
     "test": "ava"
   },
