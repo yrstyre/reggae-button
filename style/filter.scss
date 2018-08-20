@@ -50,4 +50,13 @@
     text-align: center;
     cursor: pointer;
   }
+
+  &__item--active {
+    max-width: 25%;
+    margin: 1rem;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 700;
+  }
 }

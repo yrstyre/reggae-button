@@ -1,28 +1,61 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import SVGIcon from './SVGIcon.jsx';
+import { connect } from 'react-redux';
+import { setFilters } from './actions';
 
-const Filter = props => {
-  return (
-    <div className={`filter ${props.displayFilter ? 'filter--show' : ''}`}>
-      <div className="filter__inner">
-        <button className="filter__cross-button" onClick={props.onCloseFilterClick}>
-          <SVGIcon name="svg-cross" className="icon--svg-cross" />
-        </button>
-        <ul className="filter__items">
-          <li className="filter__item">True Jamaican</li>
-          <li className="filter__item">Mellow</li>
-          <li className="filter__item">Political</li>
-          <li className="filter__item">World wide</li>
-        </ul>
+export default class Filter extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      filters: []
+    };
+  }
+
+  handleOnClick (filter) {
+    if (this.state.filters.includes(filter)) {
+      this.setState({
+        filters: this.state.filters.filter(item => item !== filter)
+      });
+    } else {
+      this.setState({
+        filters: [...this.state.filters, filter]
+      });
+    }
+  }
+
+  filterIsActive (filter) {
+    return this.state.filters.includes(filter) ? 'filter__item--active' : 'filter__item';
+  }
+
+  render () {
+    return (
+      <div className={`filter ${this.props.displayFilter ? 'filter--show' : ''}`}>
+        <div className="filter__inner">
+          <button className="filter__cross-button" onClick={this.props.onCloseFilterClick}>
+            <SVGIcon name="svg-cross" className="icon--svg-cross" />
+          </button>
+          <ul className="filter__items">
+            <li className={this.filterIsActive('trueJamaican')} onClick={() => this.handleOnClick('trueJamaican')} >True Jamaican</li>
+            <li className={this.filterIsActive('mellow')} onClick={() => this.handleOnClick('mellow')} >Mellow</li>
+            <li className={this.filterIsActive('political')} onClick={() => this.handleOnClick('political')} >Political</li>
+            <li className={this.filterIsActive('worldWide')} onClick={() => this.handleOnClick('worldWide')} >World wide</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    filters: state.filters
+  };
 };
 
-Filter.propTypes = {
-  displayFilter: PropTypes.bool.isRequired,
-  onCloseFilterClick: PropTypes.func.isRequired
+const mapDispatchToProps = dispatch => {
+  return {
+    setFilters: state => dispatch(setFilters(state))
+  };
 };
 
-export default Filter;
+connect(mapStateToProps, mapDispatchToProps)(Filter);

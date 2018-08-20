@@ -1,8 +1,9 @@
-import { setSongs, setCurrentSong } from './songs.actions';
+import { setSongs, setCurrentSong, setFilters } from './songs.actions';
 
 export {
   setSongs,
-  setCurrentSong
+  setCurrentSong,
+  setFilters
 };
 
 export function createSetStateAction (type) {
