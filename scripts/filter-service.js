@@ -1,32 +1,37 @@
-const applyFilter = (filters, playlist) => {
+export const applyFilter = (filters, playlist) => {
+  if (filters) {
     const songsWithScores = playlist.map(song => {
-        return {
-            videoId: song.id,
-            artist: song.artist,
-            title: song.title,
-            score: getMatchCount(filters, song)
-        };
+      return {
+        videoId: song.videoId,
+        artist: song.artist,
+        title: song.title,
+        score: getMatchCount(filters.map(filter => filter.toLowerCase()), song)
+      };
     })
-        .shuffle()
-        .sort((a, b) => a.score - b.score);
+    // TODO Shuffle within same score
+      .sort((a, b) => a.score - b.score);
 
+    const filteredPlaylist = songsWithScores.filter(song => song.score > 0);
     const filterCount = filters.length;
 
     if (filterCount >= 4) {
-        songsWithScores.filter(song => song.score >= (filterCount / 2));
+      filteredPlaylist.filter(song => song.score >= (filterCount / 2));
     }
 
-    return songsWithScores;
-}
+    return filteredPlaylist;
+  } else {
+    return playlist;
+  }
+};
 
 const getMatchCount = (filters, song) => {
-    let count = 0;
-    filters.forEach(filter => {
-        if(song.tags.indexOf(filter) > -1) {
-            count++;
-        }
-    });
-    return count;
-}
+  let count = 0;
+  filters.forEach(filter => {
+    if (song.tags.includes(filter)) {
+      count++;
+    }
+  });
+  return count;
+};
 
-const shuffle = (arr) => arr.sort(() => (Math.random() - 0.5));
+export default applyFilter;

@@ -4,22 +4,26 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import '../style/style.scss';
 import StartPage from './StartPage.jsx';
 import Player from './Player.jsx';
-import { setSongs } from './actions';
+import { setSongs, setFilters } from './actions';
 import data from '../songs.json';
+import applyFilter from './filter-service';
 
 class App extends React.Component {
   constructor (props) {
     super(props);
-    const shuffledSongs = this.shuffle(data.songs);
-    props.setSongs(shuffledSongs);
+    const playlist = this.makePlaylist(data.songs);
+    props.setSongs(playlist);
   }
 
   shouldComponentUpdate () {
     return true;
   }
 
-  shuffle (arr) {
-    return arr.sort(() => (Math.random() - 0.5));
+  makePlaylist (songs) {
+    // TODO Fetch filters from redux state
+    const filters = ['Mellow'];
+    const playlist = applyFilter(filters, songs);
+    return playlist;
   }
 
   render () {
@@ -37,10 +41,19 @@ class App extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    setSongs: state => dispatch(setSongs(state))
+    filters: state.filters
   };
 };
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setSongs: state => dispatch(setSongs(state)),
+    setFilter: state => dispatch(setFilters(state))
+  };
+};
+
+connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default withRouter(connect(null, mapDispatchToProps)(App));
