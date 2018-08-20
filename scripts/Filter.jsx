@@ -27,6 +27,17 @@ export default class Filter extends React.Component {
     return this.state.filters.includes(filter) ? 'filter__item--active' : 'filter__item';
   }
 
+  FilterList () {
+    // TODO: Get filters from a central source
+    const filters = ['True Jamaican', 'Mellow', 'Political', 'World Wide'];
+    const listItems = filters.map(filter =>
+      <li key={filter.toString()} className={this.filterIsActive(filter)} onClick={() => this.handleOnClick(filter)} >{filter}</li>
+    );
+    return (
+      <ul className="filter__items">{listItems}</ul>
+    );
+  }
+
   render () {
     return (
       <div className={`filter ${this.props.displayFilter ? 'filter--show' : ''}`}>
@@ -34,12 +45,7 @@ export default class Filter extends React.Component {
           <button className="filter__cross-button" onClick={this.props.onCloseFilterClick}>
             <SVGIcon name="svg-cross" className="icon--svg-cross" />
           </button>
-          <ul className="filter__items">
-            <li className={this.filterIsActive('trueJamaican')} onClick={() => this.handleOnClick('trueJamaican')} >True Jamaican</li>
-            <li className={this.filterIsActive('mellow')} onClick={() => this.handleOnClick('mellow')} >Mellow</li>
-            <li className={this.filterIsActive('political')} onClick={() => this.handleOnClick('political')} >Political</li>
-            <li className={this.filterIsActive('worldWide')} onClick={() => this.handleOnClick('worldWide')} >World wide</li>
-          </ul>
+          {this.FilterList()}
         </div>
       </div>
     );
