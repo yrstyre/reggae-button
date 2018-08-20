@@ -9,29 +9,32 @@
     {
       "videoId": "o13RCkeoaQA",
       "artist": "Nneka",
-      "title": "Book of Job"
+      "title": "Book of Job",
+      "tags": []
     },
     {
       "videoId": "VuAXl1LYY6o",
       "artist": "Bob Marley",
-      "title": "Forever Loving Jah"
+      "title": "Forever Loving Jah",
+      "tags": []
     },
     {
       "videoId": "S3UqvWk8-uw",
       "artist": "Bob Marley",
       "title": "Stir It Up",
-      "tags": ["hits", "jamaican", "retro", "chill"]
+      "tags": ["hits", "jamaican", "retro", "mellow"]
     },
     {
       "videoId": "r6GMBCaagok",
       "artist": "Etana",
       "title": "Reggae",
-      "tags": ["jamaican", "chill"]
+      "tags": ["jamaican", "mellow"]
     },
     {
       "videoId": "e-L-2H9SJNE",
       "artist": "Lady G",
-      "title": "Man Dem A Tight"
+      "title": "Man Dem A Tight",
+      "tags": []
     },
     {
       "videoId": "GGK6vjvmw4I",
@@ -97,7 +100,7 @@
       "videoId": "32ZI1yWUdNc",
       "artist": "Sizzla",
       "title": "Thank You Mama",
-      "tags": ["jamaican", "chill"]
+      "tags": ["jamaican", "mellow"]
     },
     {
       "videoId": "vOVioZGnE7E",
@@ -109,7 +112,7 @@
       "videoId": "mMMsk7MliAk",
       "artist": "Martin Jondo",
       "title": "Rainbow Warrior",
-      "tags": ["world", "chill"]
+      "tags": ["world", "mellow"]
     },
     {
       "videoId": "LMry29J_f0o",
@@ -145,7 +148,7 @@
       "videoId": "uMUQMSXLlHM",
       "artist": "Bob Marley",
       "title": "Buffalo Soldier",
-      "tags": ["hits", "jamaican", "retro", "chill"]
+      "tags": ["hits", "jamaican", "retro", "mellow"]
     },
     {
       "videoId": "H-3WksTtQVQ",
@@ -193,7 +196,7 @@
       "videoId": "vofff0Ei3kk",
       "artist": "Chronixx",
       "title": "Smile Jamaica",
-      "tags": ["chill", "jamaican", "happy"]
+      "tags": ["mellow", "jamaican", "happy"]
     },
     {
       "videoId": "1SN7Pko_jCM",
@@ -234,32 +237,38 @@
     {
       "videoId": "Xnmz8JC-2p8",
       "artist": "Sevana",
-      "title": "Love The Way"
+      "title": "Love The Way",
+      "tags": []
     },
     {
       "videoId": "Oe-BV7OYepI",
       "artist": "Steel Pulse",
-      "title": "Roller Skates"
+      "title": "Roller Skates",
+      "tags": []
     },
     {
       "videoId": "3p55wXWyc4o",
       "artist": "Tanya Stephens",
-      "title": "It's a Pity"
+      "title": "It's a Pity",
+      "tags": []
     },
     {
       "videoId": "I7TDPMGTLUc",
       "artist": "Tanya Stephens",
-      "title": "These Streets"
+      "title": "These Streets",
+      "tags": []
     },
     {
       "videoId": "AM8M-HHSbp0",
       "artist": "Ziggy Marley And The Melody Makers",
-      "title": "Tomorrow People"
+      "title": "Tomorrow People",
+      "tags": []
     },
     {
       "videoId": "tgkegHprxDg",
       "artist": "Barrington Levy",
-      "title": "My Bible"
+      "title": "My Bible",
+      "tags": []
     },
     {
       "videoId": "lgL_gSx8cWE",
@@ -283,7 +292,7 @@
       "videoId": "zz3PC1fK3qE",
       "artist": "Chris Martin",
       "title": "Let Her Go",
-      "tags": ["chill", "cover"]
+      "tags": ["mellow", "cover"]
     }
   ]
 }
